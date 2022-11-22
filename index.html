@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>MDPnP2Refine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="Filippo Dall'Asta" />
+
+  <!--WebIcon-->
+  <link rel="icon" type="image/x-icon" href="/img/medicalIMG.ico" />
+
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+  
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
+
+
+  <!-- Include echarts -->
+  <script src="/js/echarts.js"></script>
+
+  <!-- Bootsrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  
+<!--Adding jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Socket Connection-->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">MdPnP2Refine</span>
+      <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+          src="/img/medIMG.jpg" alt="..." /></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#mdpnp2Refine">MDPnP2Refine</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#graph">Graph</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Page Content-->
+  <div class="container-fluid p-0">
+
+    <!-- About-->
+
+    <section class="resume-section" id="mdpnp2Refine">
+      <div class="resume-section-content">
+        <h1 class="mb-0">
+          MD PnP 2
+          <span class="text-primary">Refine</span>
+        </h1>
+
+        <div class="row">
+          <!-- Left side-->
+          <div class="col-lg-8">
+            <div class="row">
+              
+              <!-- Heart Rate Card -->
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card">
+
+                  <div class="card-body">
+                    <h5 class="card-title">HEART RATE<span>| </span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="ps-3">
+                        <h2 class="subheading mb-4">
+                          Value:
+                          <a id="sampleHR"> - - </a>
+                        </h2>
+                          
+                        <label class="switch">
+                          <input class="cb" type="checkbox" id = "HRcheckBox">
+                          <span class="slider round"></span>
+                        </label>
+                        
+                        <!--
+                        <span class="text-success small pt-1 fw-bold">Lorem Ipsium</span>
+                        <span class="text-muted small pt-2 ps-1">Lorem Ipsium</span>
+                        -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End HR Card -->
+
+              <!-- Po2 Card -->
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card revenue-card">
+
+                  <div class="card-body">
+                    <h5 class="card-title">PO2 <span>|</span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="ps-3">
+                        <h2 class="subheading mb-4">
+                          Value:
+                          <a id="samplePO2"> - - </a>
+                        </h2>
+
+                        <label class="switch">
+                          <input class="cb" type="checkbox" id = "PO2checkBox">
+                          <span class="slider round"></span>
+                        </label>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Po2 Card -->
+
+              <!--  Card -->
+              <div class="col-xxl-4 col-xl-12">
+                <div class="card info-card customers-card">
+
+                  <div class="card-body">
+                    <h5 class="card-title">Respiratory Rate<span>|</span></h5>
+
+                    <div class="d-flex align-items-center">
+
+                      <div class="ps-3">
+                        <h2 class="subheading mb-4">
+                          Value:
+                          <a id="sampleCO2RR"> - - </a>
+                        </h2>
+                        <label class="switch">
+                          <input class="cb" type="checkbox" id = "RRcheckBox">
+                          <span class="slider round"></span>
+                        </label>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End  Card -->
+
+              <!-- Live Graph Card HR -->
+              <div class="col-12">
+                <div id ="GCardHR" class="card" >
+                  <div class="card-body">
+                    <h5 class="card-title">Live Graph <span>/ HR</span></h5>
+
+                    <!-- Line Chart -->
+                    <div><canvas id="HRChart"></canvas></div>
+                    <!-- Set the graph idden by default-->
+                    <script>document.getElementById("GCardHR").style.display = "none";</script>
+                    <!-- End Line Chart -->
+
+                  </div>
+
+                </div>
+
+                <div id ="GCardPO2" class="card" >
+                  <div class="card-body">
+                    <h5 class="card-title">Live Graph <span>/ Po2</span></h5>
+
+                    <!-- Line Chart -->
+                    <div><canvas id="PO2Chart"></canvas></div>
+                    <!-- Set the graph idden by default -->
+                    <script>document.getElementById("GCardPO2").style.display = "none";</script>
+                    
+                    <!-- End Line Chart -->
+
+                  </div>
+
+                </div>
+              </div><!-- End Live Graph Card -->
+
+
+
+            </div>
+          </div>
+          <!--End left side-->
+
+          <!--Right  side -->
+          <div class="col-lg-4">
+            <!-- Recent Activity -->
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">Lorem Ipsum <span>| Lorem</span></h5>        
+              
+                <!-- AWAY CO2 -->
+                <div class="ps-3">
+                  <h5 class="card-title">AWAY CO2 <span>|</span></h5>
+                  <h2 class="subheading mb-4" id="sampleAWCO2">
+                    - -
+                    <!--
+                    <a id="sampleAWCO2"> - - </a>
+                    -->
+                  </h2>
+
+                </div>
+                <!-- END AWAY CO2-->
+
+                <!-- PRESS_BLD_ART_ABP_SYS -->
+                <div class="ps-3">
+                  <h5 class="card-title">SYS PRESS <span>|</span></h5>
+                  <h2 class="subheading mb-4" id="samplepPSYS">
+                    - -
+                    <!--
+                    <a id="sampleAWCO2"> - - </a>
+                    -->
+                  </h2>
+
+                </div>
+                <!-- END PRESS_BLD_ART_ABP_SYS-->
+
+                <!-- MDC_PRESS_BLD_ART_ABP_DIA -->
+                <div class="ps-3">
+                  <h5 class="card-title">DIA PRESS <span>|</span></h5>
+                  <h2 class="subheading mb-4" id="samplePDIA">
+                    - -
+                    <!--
+                    <a id="sampleAWCO2"> - - </a>
+                    -->
+                  </h2>
+
+                </div>
+                <!-- END MDC_PRESS_BLD_ART_ABP_DIA-->
+
+                <!-- MDC_PULS_OXIM_PULS_RATE -->
+                <div class="ps-3">
+                  <h5 class="card-title">PULS OXIM<span>| PULS RATE</span></h5>
+                  <h2 class="subheading mb-4" id="samplePOPR">
+                    - -
+                    <!--
+                    <a id="sampleAWCO2"> - - </a>
+                    -->
+                  </h2>
+
+                </div>
+                <!-- END MDC_PULS_OXIM_PULS_RATE-->
+
+                <!-- MDC_TTHOR_RESP_RATE -->
+                <div class="ps-3">
+                  <h5 class="card-title">TTHOR <span>|RESP RATE</span></h5>
+                  <h2 class="subheading mb-4" id="sampleTTRR">
+                    - -
+                    <!--
+                    <a id="sampleAWCO2"> - - </a>
+                    -->
+                  </h2>
+
+                </div>
+                <!-- END MDC_TTHOR_RESP_RATE-->
+
+            </div><!-- End Recent Activity -->
+          </div>
+
+          <!-- End rigth side -->
+          </div>
+
+          
+        
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+    <!-- Graph Page-->
+    <section class="resume-section" id="graph">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Graph</h2>
+
+        <!-- Live Graph Card -->
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Live Graph <span>/ RR</span></h5>
+
+              <!-- Line Chart -->
+
+              <div>
+                <canvas id="RRChart"></canvas>
+              </div>
+
+              <!-- End Line Chart -->
+            </div>
+          </div>
+        </div><!-- End Live Graph Card -->
+
+      </div>
+    </section>
+    <hr class="m-0" />
+  </div>
+
+
+
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script type="text/javascript">
+    var socket = io("http://localhost:3030");
+    
+
+
+    /////////// Sezione per gestione grafici \\\\\\\\\\\\\\\\\\\
+    // Commenti un pò italiano un pò inglese, dipende come mi gira
+    // Anyway....
+
+    //// Grafico RR
+    const rrx = document.getElementById('RRChart');
+    const RRChart = new Chart(rrx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'RR',
+            data: [], //index[0]//
+            borderWidth: 1,
+            tension: 0.1, //this is the smoothness
+            showLine: true,
+            spanGaps: true
+          }
+
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    //// Grafico HR
+    const po2x = document.getElementById('PO2Chart');
+    const PO2Chart = new Chart(po2x, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'PO2',
+            data: [], //index[0]//
+            borderWidth: 1,
+            tension: 0.1, //this is the smoothness
+            showLine: true,
+            spanGaps: true
+          }
+
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    //// Grafico HR
+    const hrx = document.getElementById('HRChart');
+    const HRChart = new Chart(hrx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'HR',
+            data: [], //index[0]//
+            borderWidth: 1,
+            tension: 0.1, //this is the smoothness
+            showLine: true,
+            spanGaps: true
+          }
+
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    /////////// Sezione ricezione dati \\\\\\\\\\\\\\\\\\\
+
+    socket.on("data", function (data) { //listen for an event called data, when data event happens it runs this function
+
+      msg = data.toString();
+      var arr = msg.split(",");
+      var arrHR, arrRR;
+      var timHR, timRR;
+
+
+      // arr[0] è il metricID
+      // arr[1] è il valore letto
+      // arr[2] è il tempo
+
+      /// Ora ordino i dati:
+      switch (arr[0]) {
+
+        case "MDC_CO2_RESP_RATE": // RR
+          document.getElementById("sampleCO2RR").innerHTML = arr[1];
+
+          // Obtain the Integer value and the time value to be graphed
+          vlRR = (parseInt(arr[1]));
+          timRR = extracDate(arr[2]);
+          //console.log(vlRR + " " + timRR)
+
+          //Add value to HR graph
+          addValue(RRChart, vlRR, timRR);
+
+          // Clear graph after a 30 samples
+          clearOverFlow(RRChart, 25);
+
+          break;
+
+        case "MDC_AWAY_CO2_ET": //AWCO2
+          document.getElementById("sampleAWCO2").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABP_SYS":// PSYS
+          document.getElementById("samplepPSYS").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABP_DIA": // PDIA
+          document.getElementById("samplePDIA").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PULS_OXIM_SAT_O2": // PO2
+          document.getElementById("samplePO2").innerHTML = arr[1];
+          
+          var vlPO2 = (parseFloat(arr[1]));
+          var timPO2 = extracDate(arr[2]);    
+
+          addValue(PO2Chart, vlPO2, timPO2);
+
+          // Clear graph after a n samples
+          clearOverFlow(PO2Chart, 25);
+
+          break;
+
+        case "MDC_PULS_OXIM_PULS_RATE": //  POPR
+          document.getElementById("samplePOPR").innerHTML = arr[1];
+          break;
+
+        case "MDC_ECG_HEART_RATE": // HR
+          //Get the data from the array when recive HR sample
+          document.getElementById("sampleHR").innerHTML = arr[1];
+
+          // Obtain the Floating value and the time value to be graphed
+          vlHR = (parseFloat(arr[1]));
+          timHR = extracDate(arr[2]);         
+          addValue(HRChart, vlHR, timHR);
+
+          // Clear graph after a n samples
+          clearOverFlow(HRChart, 25);
+
+          break;
+
+        case "MDC_TTHOR_RESP_RATE": // TTRR
+          document.getElementById("sampleTTRR").innerHTML = arr[1];
+
+
+          break;
+
+      }
+
+    });
+
+
+
+    ///////Toggle Init \\\\\\\\\\\
+
+    toggleBTNs('HRcheckBox', 'GCardHR');
+    toggleBTNs('PO2checkBox', 'GCardPO2');
+    toggleBTNs('RRcheckBox', 'GCardRR');
+
+    // End Recursive socket call;
+
+    // 20221118.185515.000+0100
+    //          185515
+    //          18.55.15
+
+    function extracDate(str) {
+      var ext = str.split(".");
+      tm = ext[1].substring(0, 2) + ":" + ext[1].substring(2, 4) + "." + ext[1].substring(4, 6);
+      return (tm);
+    }
+
+    function addValue(chart, val, label){
+      chart.data.datasets[0].data.push(val);
+      chart.data.labels.push(label);
+      chart.update(); 
+    }
+
+
+    function clearOverFlow(chart, nsampl){
+      if (chart.data.datasets[0].data.length > nsampl) {
+            chart.data.datasets[0].data = [];
+            chart.data.labels = [];
+          }
+    }
+
+    function toggleBTNs(chbox, chart){
+      document.getElementById(chbox).addEventListener('click', function handleClick() {
+        if (document.getElementById(chbox).checked) {
+          document.getElementById(chart).style.display = 'block';
+        } else {
+          document.getElementById(chart).style.display = 'none';
+        }
+      });
+      
+
+    }
+
+    
+
+
+  </script>
+
+
+  
+</body>
+
+</html>
