@@ -18,10 +18,6 @@
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
 
-
-  <!-- Include echarts -->
-  <script src="/js/echarts.js"></script>
-
   <!-- Bootsrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   
@@ -319,7 +315,7 @@
               </div>
 
               <div>
-                <canvas id="myChart"></canvas>
+                <canvas id="ABPChart"></canvas>
               </div>
 
               <!-- End Line Chart -->
@@ -356,6 +352,7 @@
       //#region Single values Graph
 
         //#region Grafico RR
+        /*
         const rrx = document.getElementById('RRChart');
         const RRChart = new Chart(rrx, {
           type: 'line',
@@ -381,6 +378,7 @@
             }
           }
         });
+        */
         //#endregion Grafico RR
 
         //#region Grafico PO2
@@ -538,12 +536,55 @@
         });
         //#endregion LeadI ECG
 
+        //#region ART_ABP 
+        const artABP = document.getElementById('ABPChart');
+        const ARTABPChart = new Chart(artABP, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'Lead1',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                borderColor: 'rgb(255, 0, 0)',
+                showLine: true,
+                spanGaps: true
+              }
+
+            ]
+          },
+          options: {
+            animation: {
+              duration: 0
+            },
+            scales: {
+              y: {
+                beginAtZero: false,
+                display: false
+              },
+
+              x: {
+                display: false
+              }
+            },
+            elements: {
+              point: {
+                radius: 0
+              }
+            }
+          }
+        });
+        //#endregion ART_ABP
+
+
       //#endregion Live Wave Graphs 
       
     //#endregion Graphs Initialization
 
 
-    //#region Sezione ricezione dati 
+    //#region Sezione ricezione e sroting dati 
     
     var vlHR;
 
@@ -571,7 +612,7 @@
           vlRR = (parseInt(arr[1]));
           timRR = extracDate(arr[2]);
           //(vlRR + " " + timRR)
-          setInterval(reLoad(RRChart, vlPO2, timPO2, 15), 1000);
+          //setInterval(reLoad(RRChart, vlPO2, timPO2, 15), 1000);
 
           break;
 
@@ -632,16 +673,24 @@
           break;
 
         case "MDC_ECG_LEAD_ISIM":
-
-          console.log('Ricevo I');
           arr = maptoNum(arr[1]);
-
           Lab = Array.from(Array(arr.length).keys());
-          setInterval(reLoad(lIChart, arr, Lab, 800), 1);
+          setInterval(reLoad(lIChart, arr, Lab, 800), 1000);
           break;
 
         case "MDC_ECG_LEAD_IISIM":
-          console.log('Ricevo II');
+          
+          break;
+
+        case "MDC_ECG_LEAD_IIISIM":
+          
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABPSIM":
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+          console.log(arr)
+          setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
           break;
         //#endregion Waveform data sorting
       }
@@ -696,6 +745,7 @@
     function adddata(Chart, val1, label1, maxDSL, val2 = NaN, label2 = NaN) {
       var labels1 = Chart.data.labels;
       var val1DataSet = Chart.data.datasets[0].data;
+      console.log(val1);
       var val1DataLength = val1DataSet.length;
 
 
@@ -725,7 +775,7 @@
 
       Chart.data.labels = Chart.data.labels.concat(label1);
       Chart.data.datasets[0].data = Chart.data.datasets[0].data.concat(val1);
-
+      console.log(Chart.data.datasets[0].data);
       Chart.update();
     }
     /*
