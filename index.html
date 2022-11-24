@@ -193,7 +193,7 @@
                             <div class="col-12">
                               <div id ="LeadI" class="card" >
                                 <div class="card-body">
-                                  <h5 class="card-title">Live Graph <span>/ HR</span></h5>
+                                  <h5 class="card-title">ECG <span>/ Lead I </span></h5>
               
                                   <!-- Line Chart -->
                                   <div><canvas id="LeadIChart"></canvas></div>
@@ -345,8 +345,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
  
   <script type="text/javascript">
-
-    var socket = io("http://localhost:3030");
+    var HOST = "localhost"
+    var PORT = "3030"
+    var socket = io(HOST + ":" + PORT);
 
 
 
@@ -478,7 +479,8 @@
             },
             scales: {
               y: {
-                beginAtZero: false
+                beginAtZero: false,
+                display: false
               },
 
               x: {
@@ -506,6 +508,7 @@
                 data: [], //index[0]//
                 borderWidth: 1,
                 tension: 0.1, //this is the smoothness
+                borderColor: 'rgb(255, 0, 0)',
                 showLine: true,
                 spanGaps: true
               }
@@ -518,7 +521,8 @@
             },
             scales: {
               y: {
-                beginAtZero: false
+                beginAtZero: false,
+                display: false
               },
 
               x: {
@@ -540,12 +544,14 @@
 
 
     //#region Sezione ricezione dati 
+    
+    var vlHR;
 
     socket.on("data", function (data) { //listen for an event called data, when data event happens it runs this function
 
       msg = data.toString();
       var arr = msg.split(":");
-      var arrHR, arrRR;
+      var arrRR;
       var timHR, timRR;
 
 
@@ -623,25 +629,20 @@
           Lab = Array.from(Array(arr.length).keys());
           setInterval(reLoad(CapanomChart, arr, Lab, 170), 1000);
 
-
-
           break;
 
         case "MDC_ECG_LEAD_ISIM":
 
-
+          console.log('Ricevo I');
           arr = maptoNum(arr[1]);
 
           Lab = Array.from(Array(arr.length).keys());
-          setInterval(reLoad(lIChart, arr, Lab, 1100), 1000);
-
-
-
-
-
-
+          setInterval(reLoad(lIChart, arr, Lab, 800), 1);
           break;
 
+        case "MDC_ECG_LEAD_IISIM":
+          console.log('Ricevo II');
+          break;
         //#endregion Waveform data sorting
       }
       //#endregion Data distribution
@@ -658,6 +659,7 @@
     toggleBTNs('HRcheckBox', 'GCardHR');
     toggleBTNs('PO2checkBox', 'GCardPO2');
     toggleBTNs('RRcheckBox', 'GCardRR');
+
 
     function extracDate(str) {
       var ext = str.split(".");
@@ -691,43 +693,48 @@
     }
 
 
-    function adddata(Chart, val, label, maxDSL) {
-      var labels = Chart.data.labels;
-      var valDataSet = Chart.data.datasets[0].data;
-
-      var valDataLength = valDataSet.length;
+    function adddata(Chart, val1, label1, maxDSL, val2 = NaN, label2 = NaN) {
+      var labels1 = Chart.data.labels;
+      var val1DataSet = Chart.data.datasets[0].data;
+      var val1DataLength = val1DataSet.length;
 
 
       // if data set has more than MAX_DATA_SET_LENGTH entries, 
       // remove the first one entry and push on a new data entry
-      var didRemoveData = false;
-      if (valDataLength > maxDSL) {
+      var didRemoveData1 = false;
+      if (val1DataLength > maxDSL) {
 
-        if (Array.isArray(val)) {
-          valDataSet.splice(0, val.length);
+        if (Array.isArray(val1)) {
+          val1DataSet.splice(0, val1.length);
         } else {
-          valDataSet.shift();
+          val1DataSet.shift();
         }
 
-        didRemoveData = true;
+        didRemoveData1 = true;
       }
 
       // if either download or upload data was removed, we also need to remove
       // the first label to keep the data from squeezing in.
-      if (didRemoveData) {
-        if (Array.isArray(val)) {
-          labels.splice(0, val.length);
+      if (didRemoveData1) {
+        if (Array.isArray(val1)) {
+          labels1.splice(0, val1.length);
         } else {
-          labels.shift();
+          labels1.shift();
         }
       }
 
-      Chart.data.labels = Chart.data.labels.concat(label);
-      Chart.data.datasets[0].data = Chart.data.datasets[0].data.concat(val);
+      Chart.data.labels = Chart.data.labels.concat(label1);
+      Chart.data.datasets[0].data = Chart.data.datasets[0].data.concat(val1);
 
       Chart.update();
     }
+    /*
+    myInterval = setInterval(sayHi, 500);
 
+    function sayHi() {
+      console.log('Hi');
+    }
+    */
     //#endregion Function Section 
 
 

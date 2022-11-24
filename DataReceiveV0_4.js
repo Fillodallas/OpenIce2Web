@@ -13,6 +13,9 @@ var expressHT = require('express'),
     httpHT = require('http'),
     socketIOHT = require('socket.io'),
     serverHT, ioHT;
+
+var webHOST = "localhost";
+var webPORT = 3030;
 ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 //////////////////// Static Files \\\\\\\\\\\\\\\\\\\\\\\\\
@@ -34,7 +37,6 @@ var firstDataListenner = function (data) {
     fileData = data;
     var msg =data.toString();
     ioHT.emit('data', msg);
-    //console.log(msg);
 }
 
  console.log('=====================================================');
@@ -42,7 +44,7 @@ var firstDataListenner = function (data) {
  console.log('=====================================================');
 
 javaServer.on('listening', function () {
-   console.log('Server is listening on ' + javaPort);
+   console.log('Server is listening on ' + javaPort + " for OpenICE Data");
 });
 
 javaServer.on('error', function (e) {
@@ -54,18 +56,32 @@ javaServer.on('close', function () {
    console.log('Java ' + clientAddress + ' disconnected');
 });
 
+
+  
+javaServer.on('end', function() {
+    console.log('Server closed');
+});
+
 javaServer.on('connection', function (javaSocket) {
     var clientAddress = javaSocket.address().address + ':' + javaSocket.address().port;
     //console.log('Java ' + clientAddress + ' connected');
     javaSocket.on('data', firstDataListenner);
 
 });
+
+
+
  javaServer.listen(javaPort);
 
  ////////////////////////////// Http Server \\\\\\\\\\\\\\\\\\\\\\\\
 
 serverHT = httpHT.Server(appHT);
-serverHT.listen(3030);
+
+serverHT.on('listening', function () {
+    console.log('Serving address: '+ webHOST + ":" + webPORT);
+ });
+
+serverHT.listen(webPORT, webHOST);
 
 ioHT = socketIOHT(serverHT);
 
