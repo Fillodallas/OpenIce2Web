@@ -19,8 +19,8 @@ Download the file [Substitute]
   
   
 
-3. Open a terminal, navigate to the OpenICE, and run ‘gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
-4. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you whis to transfer.
+3. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
+4. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
 
 [............. COMING SOON ...................]
