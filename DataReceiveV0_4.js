@@ -34,7 +34,7 @@ var firstDataListenner = function (data) {
     fileData = data;
     var msg =data.toString();
     ioHT.emit('data', msg);
-    console.log(msg);
+    //console.log(msg);
 }
 
  console.log('=====================================================');

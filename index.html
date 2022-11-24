@@ -156,7 +156,7 @@
               </div>
               <!-- End  Card -->
 
-              <!-- Live Graph Card HR -->
+              <!-- Live Graph Card ShowHide HR/PO2 -->
               <div class="col-12">
                 <div id ="GCardHR" class="card" >
                   <div class="card-body">
@@ -186,7 +186,28 @@
                   </div>
 
                 </div>
-              </div><!-- End Live Graph Card -->
+              </div>
+              <!-- End Live Graph Card -->
+
+                            <!-- Live Graph Card ShowHide HR/PO2 -->
+                            <div class="col-12">
+                              <div id ="LeadI" class="card" >
+                                <div class="card-body">
+                                  <h5 class="card-title">Live Graph <span>/ HR</span></h5>
+              
+                                  <!-- Line Chart -->
+                                  <div><canvas id="LeadIChart"></canvas></div>
+                                  <!-- Set the graph idden by default-->
+                                  
+                                  <!-- End Line Chart -->
+              
+                                </div>
+              
+                              </div>
+              
+
+                            </div>
+                            <!-- End Live Graph Card -->
 
 
 
@@ -197,81 +218,82 @@
           <!--Right  side -->
           <div class="col-lg-4">
             <!-- Recent Activity -->
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">Lorem Ipsum <span>| Lorem</span></h5>        
-              
+            <div class="card">
+          
+              <div class="card-body">
+                <h5 class="card-title">Lorem Ipsum <span>| Lorem</span></h5>
+          
                 <!-- AWAY CO2 -->
                 <div class="ps-3">
                   <h5 class="card-title">AWAY CO2 <span>|</span></h5>
                   <h2 class="subheading mb-4" id="sampleAWCO2">
                     - -
                     <!--
-                    <a id="sampleAWCO2"> - - </a>
-                    -->
+                              <a id="sampleAWCO2"> - - </a>
+                              -->
                   </h2>
-
+          
                 </div>
                 <!-- END AWAY CO2-->
-
+          
                 <!-- PRESS_BLD_ART_ABP_SYS -->
                 <div class="ps-3">
                   <h5 class="card-title">SYS PRESS <span>|</span></h5>
                   <h2 class="subheading mb-4" id="samplepPSYS">
                     - -
                     <!--
-                    <a id="sampleAWCO2"> - - </a>
-                    -->
+                              <a id="sampleAWCO2"> - - </a>
+                              -->
                   </h2>
-
+          
                 </div>
                 <!-- END PRESS_BLD_ART_ABP_SYS-->
-
+          
                 <!-- MDC_PRESS_BLD_ART_ABP_DIA -->
                 <div class="ps-3">
                   <h5 class="card-title">DIA PRESS <span>|</span></h5>
                   <h2 class="subheading mb-4" id="samplePDIA">
                     - -
                     <!--
-                    <a id="sampleAWCO2"> - - </a>
-                    -->
+                              <a id="sampleAWCO2"> - - </a>
+                              -->
                   </h2>
-
+          
                 </div>
                 <!-- END MDC_PRESS_BLD_ART_ABP_DIA-->
-
+          
                 <!-- MDC_PULS_OXIM_PULS_RATE -->
                 <div class="ps-3">
                   <h5 class="card-title">PULS OXIM<span>| PULS RATE</span></h5>
                   <h2 class="subheading mb-4" id="samplePOPR">
                     - -
                     <!--
-                    <a id="sampleAWCO2"> - - </a>
-                    -->
+                              <a id="sampleAWCO2"> - - </a>
+                              -->
                   </h2>
-
+          
                 </div>
                 <!-- END MDC_PULS_OXIM_PULS_RATE-->
-
+          
                 <!-- MDC_TTHOR_RESP_RATE -->
                 <div class="ps-3">
                   <h5 class="card-title">TTHOR <span>|RESP RATE</span></h5>
                   <h2 class="subheading mb-4" id="sampleTTRR">
                     - -
                     <!--
-                    <a id="sampleAWCO2"> - - </a>
-                    -->
+                              <a id="sampleAWCO2"> - - </a>
+                              -->
                   </h2>
-
+          
                 </div>
                 <!-- END MDC_TTHOR_RESP_RATE-->
-
-            </div><!-- End Recent Activity -->
-          </div>
-
+          
+              </div><!-- End Recent Activity -->
+            </div>
+          
+            
+          </div> 
           <!-- End rigth side -->
-          </div>
 
           
         
@@ -293,7 +315,11 @@
               <!-- Line Chart -->
 
               <div>
-                <canvas id="RRChart"></canvas>
+                <canvas id="CapanomChart"></canvas>
+              </div>
+
+              <div>
+                <canvas id="myChart"></canvas>
               </div>
 
               <!-- End Line Chart -->
@@ -313,107 +339,212 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
   <script src="js/scripts.js"></script>
-
+  
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+ 
   <script type="text/javascript">
+
     var socket = io("http://localhost:3030");
+
+
+
+    //#region Graphs Initialization 
     
+      //#region Single values Graph
 
+        //#region Grafico RR
+        const rrx = document.getElementById('RRChart');
+        const RRChart = new Chart(rrx, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'RR',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                showLine: true,
+                spanGaps: true
+              }
 
-    /////////// Sezione per gestione grafici \\\\\\\\\\\\\\\\\\\
-    // Commenti un pò italiano un pò inglese, dipende come mi gira
-    // Anyway....
-
-    //// Grafico RR
-    const rrx = document.getElementById('RRChart');
-    const RRChart = new Chart(rrx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'RR',
-            data: [], //index[0]//
-            borderWidth: 1,
-            tension: 0.1, //this is the smoothness
-            showLine: true,
-            spanGaps: true
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
           }
+        });
+        //#endregion Grafico RR
 
-        ]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
+        //#region Grafico PO2
+        const po2x = document.getElementById('PO2Chart');
+        const PO2Chart = new Chart(po2x, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'PO2',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                showLine: true,
+                spanGaps: true
+              }
+
+            ]
+          },
+          options: {
+            animation: {
+              duration: 500,
+
+
+
+
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+
+                //
+              }
+            }
           }
-        }
-      }
-    });
+        });
+        //#endregion Grafico PO2
 
+        //#region Grafico HR
+        const hrx = document.getElementById('HRChart');
+        const HRChart = new Chart(hrx, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'HR',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                showLine: true,
+                spanGaps: true
+              }
 
-    //// Grafico HR
-    const po2x = document.getElementById('PO2Chart');
-    const PO2Chart = new Chart(po2x, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'PO2',
-            data: [], //index[0]//
-            borderWidth: 1,
-            tension: 0.1, //this is the smoothness
-            showLine: true,
-            spanGaps: true
+            ]
+          },
+          options: {
+            animation: {
+              duration: 0
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
           }
+        });
+        //#endregion Grafico HR
 
-        ]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
+      //#endregion Single values Graph
+
+      //#region Live Wave Graphs 
+
+        //#region CO2 Capanometer
+        const capch = document.getElementById('CapanomChart');
+        const CapanomChart = new Chart(capch, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'Co2',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                showLine: true,
+                spanGaps: true
+              }
+
+            ]
+          },
+          options: {
+            animation: {
+              duration: 0
+            },
+            scales: {
+              y: {
+                beginAtZero: false
+              },
+
+              x: {
+                display: false
+              }
+            },
+            elements: {
+              point: {
+                radius: 0
+              }
+            }
           }
-        }
-      }
-    });
+        });
+        //#endregion CO2 Capanometer
+        
+        //#region LeadI ECG 
+        const lIECG = document.getElementById('LeadIChart');
+        const lIChart = new Chart(lIECG, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              {
+                label: 'Lead1',
+                data: [], //index[0]//
+                borderWidth: 1,
+                tension: 0.1, //this is the smoothness
+                showLine: true,
+                spanGaps: true
+              }
 
-    //// Grafico HR
-    const hrx = document.getElementById('HRChart');
-    const HRChart = new Chart(hrx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'HR',
-            data: [], //index[0]//
-            borderWidth: 1,
-            tension: 0.1, //this is the smoothness
-            showLine: true,
-            spanGaps: true
+            ]
+          },
+          options: {
+            animation: {
+              duration: 0
+            },
+            scales: {
+              y: {
+                beginAtZero: false
+              },
+
+              x: {
+                display: false
+              }
+            },
+            elements: {
+              point: {
+                radius: 0
+              }
+            }
           }
+        });
+        //#endregion LeadI ECG
 
-        ]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+      //#endregion Live Wave Graphs 
+      
+    //#endregion Graphs Initialization
 
 
-    /////////// Sezione ricezione dati \\\\\\\\\\\\\\\\\\\
+    //#region Sezione ricezione dati 
 
     socket.on("data", function (data) { //listen for an event called data, when data event happens it runs this function
 
       msg = data.toString();
-      var arr = msg.split(",");
+      var arr = msg.split(":");
       var arrHR, arrRR;
       var timHR, timRR;
 
@@ -422,8 +553,10 @@
       // arr[1] è il valore letto
       // arr[2] è il tempo
 
-      /// Ora ordino i dati:
+      //#region Data distribution 
       switch (arr[0]) {
+
+        //#region Single data sorting
 
         case "MDC_CO2_RESP_RATE": // RR
           document.getElementById("sampleCO2RR").innerHTML = arr[1];
@@ -431,13 +564,8 @@
           // Obtain the Integer value and the time value to be graphed
           vlRR = (parseInt(arr[1]));
           timRR = extracDate(arr[2]);
-          //console.log(vlRR + " " + timRR)
-
-          //Add value to HR graph
-          addValue(RRChart, vlRR, timRR);
-
-          // Clear graph after a 30 samples
-          clearOverFlow(RRChart, 25);
+          //(vlRR + " " + timRR)
+          setInterval(reLoad(RRChart, vlPO2, timPO2, 15), 1000);
 
           break;
 
@@ -458,14 +586,10 @@
 
         case "MDC_PULS_OXIM_SAT_O2": // PO2
           document.getElementById("samplePO2").innerHTML = arr[1];
-          
+
           var vlPO2 = (parseFloat(arr[1]));
-          var timPO2 = extracDate(arr[2]);    
-
-          addValue(PO2Chart, vlPO2, timPO2);
-
-          // Clear graph after a n samples
-          clearOverFlow(PO2Chart, 25);
+          var timPO2 = extracDate(arr[2]);
+          setInterval(reLoad(PO2Chart, vlPO2, timPO2, 15), 1000);
 
           break;
 
@@ -478,26 +602,56 @@
           document.getElementById("sampleHR").innerHTML = arr[1];
 
           // Obtain the Floating value and the time value to be graphed
-          vlHR = (parseFloat(arr[1]));
-          timHR = extracDate(arr[2]);         
-          addValue(HRChart, vlHR, timHR);
 
-          // Clear graph after a n samples
-          clearOverFlow(HRChart, 25);
+          vlHR = (parseFloat(arr[1]));
+          timHR = extracDate(arr[2]);
+          setInterval(reLoad(HRChart, vlHR, timHR, 15), 1000);
 
           break;
 
         case "MDC_TTHOR_RESP_RATE": // TTRR
           document.getElementById("sampleTTRR").innerHTML = arr[1];
+          break;
+
+        //#endregion Single data sorting
+        
+        //#region Waveform data sorting
+
+        case "MDC_AWAY_CO2SIM":
+
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+          setInterval(reLoad(CapanomChart, arr, Lab, 170), 1000);
+
 
 
           break;
 
+        case "MDC_ECG_LEAD_ISIM":
+
+
+          arr = maptoNum(arr[1]);
+
+          Lab = Array.from(Array(arr.length).keys());
+          setInterval(reLoad(lIChart, arr, Lab, 1100), 1000);
+
+
+
+
+
+
+          break;
+
+        //#endregion Waveform data sorting
       }
+      //#endregion Data distribution
 
     });
 
+    //#endregion Sezione ricezione dati
+    
 
+    //#region Function Section 
 
     ///////Toggle Init \\\\\\\\\\\
 
@@ -505,33 +659,14 @@
     toggleBTNs('PO2checkBox', 'GCardPO2');
     toggleBTNs('RRcheckBox', 'GCardRR');
 
-    // End Recursive socket call;
-
-    // 20221118.185515.000+0100
-    //          185515
-    //          18.55.15
-
     function extracDate(str) {
       var ext = str.split(".");
       tm = ext[1].substring(0, 2) + ":" + ext[1].substring(2, 4) + "." + ext[1].substring(4, 6);
       return (tm);
     }
 
-    function addValue(chart, val, label){
-      chart.data.datasets[0].data.push(val);
-      chart.data.labels.push(label);
-      chart.update(); 
-    }
 
-
-    function clearOverFlow(chart, nsampl){
-      if (chart.data.datasets[0].data.length > nsampl) {
-            chart.data.datasets[0].data = [];
-            chart.data.labels = [];
-          }
-    }
-
-    function toggleBTNs(chbox, chart){
+    function toggleBTNs(chbox, chart) {
       document.getElementById(chbox).addEventListener('click', function handleClick() {
         if (document.getElementById(chbox).checked) {
           document.getElementById(chart).style.display = 'block';
@@ -539,11 +674,61 @@
           document.getElementById(chart).style.display = 'none';
         }
       });
-      
+
 
     }
 
-    
+    function maptoNum(str) {
+      str = str.replace('[', '').replace(']', '').replaceAll(' ', '');
+      var arr = str.split(",");
+      arr = arr.map(Number);
+      return arr
+    }    
+
+
+    function reLoad(Chart, data1, label, maxDSL) {
+      adddata(Chart, data1, label, maxDSL);
+    }
+
+
+    function adddata(Chart, val, label, maxDSL) {
+      var labels = Chart.data.labels;
+      var valDataSet = Chart.data.datasets[0].data;
+
+      var valDataLength = valDataSet.length;
+
+
+      // if data set has more than MAX_DATA_SET_LENGTH entries, 
+      // remove the first one entry and push on a new data entry
+      var didRemoveData = false;
+      if (valDataLength > maxDSL) {
+
+        if (Array.isArray(val)) {
+          valDataSet.splice(0, val.length);
+        } else {
+          valDataSet.shift();
+        }
+
+        didRemoveData = true;
+      }
+
+      // if either download or upload data was removed, we also need to remove
+      // the first label to keep the data from squeezing in.
+      if (didRemoveData) {
+        if (Array.isArray(val)) {
+          labels.splice(0, val.length);
+        } else {
+          labels.shift();
+        }
+      }
+
+      Chart.data.labels = Chart.data.labels.concat(label);
+      Chart.data.datasets[0].data = Chart.data.datasets[0].data.concat(val);
+
+      Chart.update();
+    }
+
+    //#endregion Function Section 
 
 
   </script>
