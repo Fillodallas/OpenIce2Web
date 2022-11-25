@@ -5,6 +5,8 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 
 Setup Instruction:
 
+0. Install NodeJS (used version: 16.18.0) from https://nodejs.org/en/
+
 1. Setup OpenICE: 
 
 Install Oracle Java 8 ( available for free here: https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html ). **It needs to be Java 8, not a later version.**
