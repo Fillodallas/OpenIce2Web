@@ -17,7 +17,7 @@ Download the file [Substitute]
 
 
 2. Run the server
-   Install the dependencies running the following commands in the folder containing the ha file:
+   Install the dependencies running the following commands in the folder containing the JS file:
    ```
     npm install ws 
     npm install socket.io
