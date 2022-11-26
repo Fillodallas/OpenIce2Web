@@ -19,6 +19,7 @@ Download the file [Substitute]
 2. Run the server
    Install the dependencies running the following commands in the folder containing the JS file:
    ```
+    npm init -y
     npm install ws 
     npm install socket.io
     ```
