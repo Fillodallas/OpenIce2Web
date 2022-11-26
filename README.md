@@ -17,12 +17,14 @@ Download the file [Substitute]
 
 
 2. Run the server
-   Install the dependencies running the following commands in the folder containing the JS file:
+   Install the dependencies running the following commands **in the folder containing the JS file**:
    ```
     npm init -y
     npm install ws 
+    npm install express
     npm install socket.io
     ```
+    
   Run the file "DataReceiveV0_4.js" using the command "npm run nodemon" (if you have nodemon pack installed) otherwhise run it through "npm DataReceiveV0_4.js".
   
   
