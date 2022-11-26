@@ -5,7 +5,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 
 Setup Instruction:
 
-0. Install NodeJS (used version: 16.18.0) from https://nodejs.org/en/
+0. Install NodeJS (used version: 16.18.0, later versions are OK) from https://nodejs.org/en/
 
 1. Install OpenICE: 
 
