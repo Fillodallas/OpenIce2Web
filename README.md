@@ -16,21 +16,27 @@ Download the file [Substitute]
 
 
 
-2. Run the server
-   Install the dependencies running the following commands **in the folder containing the JS file**:
+2. Install the Dependencies:
+   If you are using VS Code select NodeJS as debugger (Ctrl + P). Open the terminal, go to the folder containing the JS file and run the following commands: **in the folder containing the JS file** ():
    ```
     npm init -y
     npm install ws 
     npm install express
     npm install socket.io
     ```
-    
-  Run the file "DataReceiveV0_4.js" using the command "npm run nodemon" (if you have nodemon pack installed) otherwhise run it through "npm DataReceiveV0_4.js".
-  
-  
+3. Run the server:
+    ```
+    node DataReceiveV0_4.js
+    ```
+    or the command
+    ```
+    npm run nodemon
+    ```
 
-3. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
-4. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
+
+4. Download the modified OpenICE files and replace the original in the appropriate directory [........ COMING SOON...........]
+5. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
+6. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
 
-[............. COMING SOON ...................]
+
