@@ -3,7 +3,7 @@
 This program facilitates communication between a program written in Java (Open ICE) and a JavaScript server.
 The data transmitted by the OpenIce program is displayed by a Webpage served by the server.
 
-Setup Instruction:
+## Setup Instruction:
 
 0. Install NodeJS (used version: 16.18.0, later versions are OK) from https://nodejs.org/en/
 
@@ -41,4 +41,6 @@ Setup Instruction:
 6. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
 
+
+## Demo:
 
