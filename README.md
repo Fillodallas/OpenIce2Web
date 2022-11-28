@@ -20,8 +20,10 @@ Setup Instruction:
    ```
     npm init -y
     npm install ws 
+    npm install http 
     npm install express
     npm install socket.io
+    npm install fs
     ```
 3. Run the server:
     ```
