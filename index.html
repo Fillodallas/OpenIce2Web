@@ -313,11 +313,11 @@
               <div>
                 <canvas id="CapanomChart"></canvas>
               </div>
-
+              <!--
               <div>
                 <canvas id="ABPChart"></canvas>
               </div>
-
+              -->
               <!-- End Line Chart -->
             </div>
           </div>
@@ -343,6 +343,7 @@
   <script type="text/javascript">
     var HOST = "localhost"
     var PORT = "3030"
+
     var socket = io(HOST + ":" + PORT);
 
 
@@ -519,8 +520,11 @@
             },
             scales: {
               y: {
-                beginAtZero: false,
-                display: false
+                beginAtZero: true,
+                display: false,
+                ticks : {
+ 
+                    }
               },
 
               x: {
@@ -683,13 +687,14 @@
           break;
 
         case "MDC_ECG_LEAD_IIISIM":
+           arr = maptoNum(arr[1]);
+           console.log(arr);
           
           break;
 
         case "MDC_PRESS_BLD_ART_ABPSIM":
           arr = maptoNum(arr[1]);
           Lab = Array.from(Array(arr.length).keys());
-          console.log(arr)
           setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
           break;
         //#endregion Waveform data sorting
@@ -745,7 +750,6 @@
     function adddata(Chart, val1, label1, maxDSL, val2 = NaN, label2 = NaN) {
       var labels1 = Chart.data.labels;
       var val1DataSet = Chart.data.datasets[0].data;
-      console.log(val1);
       var val1DataLength = val1DataSet.length;
 
 
@@ -775,7 +779,6 @@
 
       Chart.data.labels = Chart.data.labels.concat(label1);
       Chart.data.datasets[0].data = Chart.data.datasets[0].data.concat(val1);
-      console.log(Chart.data.datasets[0].data);
       Chart.update();
     }
     /*

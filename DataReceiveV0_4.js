@@ -81,6 +81,11 @@ serverHT.on('listening', function () {
     console.log('Serving address: '+ webHOST + ":" + webPORT);
  });
 
+serverHT.on('error', function (e) {
+    console.log('Server error: ' + e.code);
+});
+
+
 serverHT.listen(webPORT, webHOST);
 
 ioHT = socketIOHT(serverHT);
