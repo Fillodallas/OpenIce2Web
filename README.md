@@ -19,6 +19,7 @@ Setup Instruction:
    If you are using VS Code select NodeJS as debugger (Ctrl + P). Open the terminal, go to the **folder containing the JS file** and run the following commands:
    ```
     npm init -y
+    npm install
     npm install ws 
     npm install http 
     npm install express
