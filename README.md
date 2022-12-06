@@ -3,7 +3,7 @@
 This program facilitates communication between a program written in Java (Open ICE) and a JavaScript server.
 The data transmitted by the OpenIce program is displayed by a Webpage served by the server.
 
-Setup Instruction:
+## Setup Instruction:
 
 0. Install NodeJS (used version: 16.18.0, later versions are OK) from https://nodejs.org/en/
 
@@ -19,6 +19,7 @@ Setup Instruction:
    If you are using VS Code select NodeJS as debugger (Ctrl + P). Open the terminal, go to the **folder containing the JS file** and run the following commands:
    ```
     npm init -y
+    npm install
     npm install ws 
     npm install http 
     npm install express
@@ -41,3 +42,5 @@ Setup Instruction:
 
 
 
+## Demo:
+https://user-images.githubusercontent.com/92895058/204346095-4ed1b6c5-7396-4b9e-87b2-ebbd3b56eafe.mp4
