@@ -14,8 +14,8 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
    Download the file [Substitute]
 
 2. Replace OpenICE modules:
-    - Replace DataCollectorApp.java in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
-    - Replace SimMultiparameter.java in the installation folder: ~\mdpnp-master\interop-lab\demo-devices\src\main\java\org\mdpnp\devices\simulation\multi\SimMultiparameter.java
+    - Replace **DataCollectorApp.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
+    - Replace **SimMultiparameter.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-devices\src\main\java\org\mdpnp\devices\simulation\multi\SimMultiparameter.java
 
 
 
