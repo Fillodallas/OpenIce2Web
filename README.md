@@ -40,9 +40,8 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
     ```
 
 
-5. Download the modified OpenICE files and replace the original in the appropriate directory [........ COMING SOON...........]
-6. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
-7. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
+5. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
+6. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
 
 
