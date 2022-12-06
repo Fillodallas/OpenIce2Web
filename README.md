@@ -11,7 +11,6 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
    Install Oracle Java 8 ( available for free here: https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html ). **It needs to be Java      8, not a later version.**
    Download the latest version of OpenICE from github: https://github.com/mdpnp/mdpnp.git.
    Make sure your JAVA_HOME is configured to use the Oracle Java 8 JVM (https://www.thewindowsclub.com/set-java_home-in-windows-10).
-   Download the file [Substitute]
 
 2. Replace OpenICE modules:
     - Replace **DataCollectorApp.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
