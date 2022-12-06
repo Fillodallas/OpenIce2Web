@@ -67,6 +67,7 @@ javaServer.on('connection', function (javaSocket) {
     //console.log('Java ' + clientAddress + ' connected');
     javaSocket.on('data', firstDataListenner);
 
+
 });
 
 
