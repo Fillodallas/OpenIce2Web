@@ -13,9 +13,14 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
    Make sure your JAVA_HOME is configured to use the Oracle Java 8 JVM (https://www.thewindowsclub.com/set-java_home-in-windows-10).
    Download the file [Substitute]
 
+2. Replace OpenICE modules:
+    - Replace DataCollectorApp.java in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
+    - Replace SimMultiparameter.java in the installation folder: ~\mdpnp-master\interop-lab\demo-devices\src\main\java\org\mdpnp\devices\simulation\multi\SimMultiparameter.java
 
 
-2. Install the Dependencies:
+
+
+3. Install the Dependencies:
    If you are using VS Code select NodeJS as debugger (Ctrl + P). Open the terminal, go to the **folder containing the JS file** and run the following commands:
    ```
     npm init -y
@@ -26,7 +31,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
     npm install socket.io
     npm install fs
     ```
-3. Run the server:
+4. Run the server:
     ```
     node DataReceiveV0_4.js
     ```
@@ -36,9 +41,9 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
     ```
 
 
-4. Download the modified OpenICE files and replace the original in the appropriate directory [........ COMING SOON...........]
-5. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
-6. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
+5. Download the modified OpenICE files and replace the original in the appropriate directory [........ COMING SOON...........]
+6. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
+7. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
 
 
