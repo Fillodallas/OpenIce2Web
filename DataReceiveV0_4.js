@@ -18,7 +18,7 @@ var webHOST = "localhost";
 var webPORT = 3030;
 ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-//////////////////// Static Files \\\\\\\\\\\\\\\\\\\\\\\\\
+//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
 appHT.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
     });
@@ -31,6 +31,18 @@ appHT.get('/', function (req, res) {
 
 ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
+appHT.get('/graphs', function (req, res) {
+    res.sendFile(__dirname + '/graphs.html');
+    });
+    
+    
+    appHT.use(expressHT.static('public'))
+    appHT.use('/css', expressHT.static(__dirname + '/public/css'));
+    appHT.use('/js', expressHT.static(__dirname + '/public/js'));
+    appHT.use('/img', expressHT.static(__dirname + '/public/img'));
+
+///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 var firstDataListenner = function (data) {

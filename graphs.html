@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Refine2Web</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.ico" type="image/x-icon" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Bootsrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--Adding jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <!-- Template Main CSS File -->
+  <link href="/css/style.css" rel="stylesheet">
+
+
+
+  <!-- =======================================================
+  
+    ======================================================== -->
+</head>
+
+<body class="toggle-sidebar">
+
+
+  <!-- ======= Options ======= -->
+  <div class="popup">
+
+    <i class="bi bi-x-circle option-close"></i>
+    <div class="form">
+      <h2>Options</h2>
+      <div class="form-element">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Enter email">
+      </div>
+      <div class="form-element">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+      </div>
+      <div class="form-element">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+      <div class="form-element">
+        <button>Sign in</button>
+      </div>
+      <div class="form-element">
+        <a href="#">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+  <!-- ======= End Options ====== -->
+
+  <!-- ======= Sidebar ======= -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img class="icon" src="/img/logo.png" width = "25" height = "25">
+      <div class="logo_name">Refine2Web</div>
+      <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+        <a href="/">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="/graphs">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Analytics</span>
+        </a>
+        <span class="tooltip">Analytics</span>
+      </li>
+
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+     <li>
+       <a href="#"> 
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Messages</span>
+       </a>
+       <span class="tooltip">Messages</span>
+     </li>
+     
+     <li>
+       <a href="#">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">File Manager</span>
+       </a>
+       <span class="tooltip">Files</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cart-alt' ></i>
+         <span class="links_name">Order</span>
+       </a>
+       <span class="tooltip">Order</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Saved</span>
+       </a>
+       <span class="tooltip">Saved</span>
+     </li>
+     <li>
+       <a href="#" id="show-login">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+    </ul>
+  </div>
+  <!-- ======= End Sidebar ======= -->
+
+
+  <!-- Page Content-->
+  <main id="main" class="main">
+
+    <!-- Page Title -->
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Graph</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Graph Page-->
+    <section class="resume-section" id="graph">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Graph</h2>
+
+        <!-- Live Graph Card -->
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Live Graph <span>/ RR</span></h5>
+
+              <!-- Line Chart -->
+
+              <div>
+                <canvas id="CapanomChart"></canvas>
+              </div>
+              <!--
+              <div>
+                <canvas id="ABPChart"></canvas>
+              </div>
+              -->
+              <!-- End Line Chart -->
+            </div>
+          </div>
+        </div><!-- End Live Graph Card -->
+
+      </div>
+    </section>
+
+  </main>
+
+
+
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <!-- Socket Connection-->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script type="text/javascript">
+    var HOST = "localhost"
+    var PORT = "3030"
+
+    var socket = io(HOST + ":" + PORT);
+
+    //#region Graphs Initialization 
+
+
+    //#region Live Wave Graphs 
+
+    //#region CO2 Capanometer
+    const capch = document.getElementById('CapanomChart');
+    const CapanomChart = new Chart(capch, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Co2',
+            data: [], //index[0]//
+            borderWidth: 1,
+            tension: 0.1, //this is the smoothness
+            showLine: true,
+            spanGaps: true
+          }
+
+        ]
+      },
+      options: {
+        animation: {
+          duration: 0
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            display: false
+          },
+
+          x: {
+            display: false
+          }
+        },
+        elements: {
+          point: {
+            radius: 0
+          }
+        }
+      }
+    });
+    //#endregion CO2 Capanometer
+
+  
+    //#endregion Live Wave Graphs 
+
+    //#endregion Graphs Initialization
+
+
+    //#region Sezione ricezione e sroting dati 
+
+    var vlHR;
+
+    socket.on("data", function (data) { //listen for an event called data, when data event happens it runs this function
+
+      msg = data.toString();
+      var arr = msg.split(":");
+      var arrRR;
+      var timHR, timRR;
+
+
+      // arr[0] è il metricID
+      // arr[1] è il valore letto
+      // arr[2] è il tempo
+
+      //#region Data distribution 
+      switch (arr[0]) {
+
+        //#region Single data sorting
+
+        case "MDC_CO2_RESP_RATE": // RR
+          document.getElementById("sampleCO2RR").innerHTML = arr[1];
+          document.getElementById("sideRR").innerHTML = arr[1];
+
+          // Obtain the Integer value and the time value to be graphed
+          vlRR = (parseInt(arr[1]));
+          timRR = extracDate(arr[2]);
+          //(vlRR + " " + timRR)
+          //setInterval(reLoad(RRChart, vlPO2, timPO2, 15), 1000);
+
+          break;
+
+        case "MDC_AWAY_CO2_ET": //AWCO2
+          document.getElementById("sampleAWCO2").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABP_SYS":// PSYS
+          document.getElementById("samplepPSYS").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABP_DIA": // PDIA
+          document.getElementById("samplePDIA").innerHTML = arr[1];
+
+          break;
+
+        case "MDC_PULS_OXIM_SAT_O2": // PO2
+          document.getElementById("samplePO2").innerHTML = arr[1];
+          document.getElementById("sidePO2").innerHTML = arr[1];
+          var vlPO2 = (parseFloat(arr[1]));
+          var timPO2 = extracDate(arr[2]);
+          setInterval(reLoad(PO2Chart, vlPO2, timPO2, 15), 1000);
+
+          break;
+
+        case "MDC_PULS_OXIM_PULS_RATE": //  POPR
+          document.getElementById("samplePOPR").innerHTML = arr[1];
+          break;
+
+        case "MDC_ECG_HEART_RATE": // HR
+          //Get the data from the array when recive HR sample
+          document.getElementById("sampleHR").innerHTML = arr[1];
+          document.getElementById("sideHR").innerHTML = arr[1];
+
+          // Obtain the Floating value and the time value to be graphed
+
+          vlHR = (parseFloat(arr[1]));
+          timHR = extracDate(arr[2]);
+          setInterval(reLoad(HRChart, vlHR, timHR, 15), 1000);
+
+          break;
+
+        case "MDC_TTHOR_RESP_RATE": // TTRR
+          document.getElementById("sampleTTRR").innerHTML = arr[1];
+          break;
+
+        //#endregion Single data sorting
+
+        //#region Waveform data sorting
+
+        case "MDC_AWAY_CO2SIM":
+
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+          setInterval(reLoad(CapanomChart, arr, Lab, 170), 1000);
+
+          break;
+
+        case "MDC_ECG_LEAD_ISIM":
+          arr = maptoNum(arr[1]);
+          arr = arr.map(function(x) { return x / 1; });
+          console.log(arr);
+          Lab = Array.from(Array(arr.length).keys());
+          setInterval(reLoad(lIChart, arr, Lab, 200), 800);
+          break;
+
+        case "MDC_ECG_LEAD_IISIM":
+
+          break;
+
+        case "MDC_ECG_LEAD_IIISIM":
+          arr = maptoNum(arr[1]);
+          //console.log(arr);
+
+          break;
+
+        case "MDC_PRESS_BLD_ART_ABPSIM":
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+          setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
+          break;
+        //#endregion Waveform data sorting
+      }
+      //#endregion Data distribution
+
+    });
+
+    //#endregion Sezione ricezione dati
+
+
+    //#region Function Section 
+
+    ///////Toggle Init \\\\\\\\\\\
+
+
+    //#endregion Function Section 
+
+    
+
+  </script>
+
+
+
+</body>
+
+</html>
