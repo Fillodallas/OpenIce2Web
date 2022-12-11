@@ -20,7 +20,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 
 
 3. Install the Dependencies:
-   If you are using VS Code select NodeJS as debugger (Ctrl + P). Open the terminal, go to the **folder containing the JS file** and run the following commands:
+   If you are using VS Code select NodeJS as debugger. Open the terminal, go to the **folder containing the JS file** and run the following commands:
    ```
     npm init -y
     npm install
