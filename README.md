@@ -28,7 +28,6 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
     npm install http 
     npm install express
     npm install socket.io
-    npm install config
     ```
 4. Run the server:
     ```
