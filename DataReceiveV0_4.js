@@ -1,9 +1,4 @@
-///////////////////////////////Setup LocalHost initializer : allow the user to select the Host Address\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
-
-
-//////////////////// Connect with MDPnP \\\\\\\\\\\\\\\\\\\\\\\\\
+//#region ////////////////// Initialize NodeJS-MDPnP server \\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 var javaPort = 8080;
@@ -12,8 +7,9 @@ var WebSocketServer = require('ws').Server
  , wss = new WebSocketServer({port: 90});
 
 var fileData ;
-////////////////////Connect with HTML page\\\\\\\\\\\\\\\\\\\\\\
+//#endregion 
 
+//#region ////////////////// Initialize NodeJS-WebPage server \\\\\\\\\\\\\\\\\\\\\\\\\
 var expressHT = require('express'),
     appHT = expressHT(),
     httpHT = require('http'),
@@ -21,8 +17,9 @@ var expressHT = require('express'),
     serverHT, ioHT;
 
 const { HOSTu, PORTu } = require('./public/js/webAddress');
+//#endregion 
 
-
+//#region //////////////////// Send static files for Index page \\\\\\\\\\\\\\\\\\\\\\\\\
 
 appHT.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -34,9 +31,9 @@ appHT.get('/', function (req, res) {
     appHT.use('/js', expressHT.static(__dirname + '/public/js'));
     appHT.use('/img', expressHT.static(__dirname + '/public/img'));
 
-///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//#endregion
 
-//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
+//#region //////////////////// Send static files for Graph page \\\\\\\\\\\\\\\\\\\\\\\\\
 appHT.get('/graphs', function (req, res) {
     res.sendFile(__dirname + '/graphs.html');
     });
@@ -47,18 +44,22 @@ appHT.get('/graphs', function (req, res) {
     appHT.use('/js', expressHT.static(__dirname + '/public/js'));
     appHT.use('/img', expressHT.static(__dirname + '/public/img'));
 
-///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+console.log('=====================================================');
+console.log('Node.js/Java Communication Module');
+console.log('=====================================================');
 
+//#region ///////////////////// Data emitter function \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 var firstDataListenner = function (data) {
     fileData = data;
     var msg =data.toString();
     ioHT.emit('data', msg);
 }
 
- console.log('=====================================================');
- console.log('Node.js/Java Communication Module');
- console.log('=====================================================');
+//#endregion
+
+//#region ////////////////// NodeJS-MDPnP server Functions and Initialization\\\\\\\\\\\\\\\\\\\\\\\\\
 
 javaServer.on('listening', function () {
    console.log('Server is listening on ' + javaPort + " for OpenICE Data");
@@ -80,18 +81,16 @@ javaServer.on('end', function() {
 });
 
 javaServer.on('connection', function (javaSocket) {
-    var clientAddress = javaSocket.address().address + ':' + javaSocket.address().port;
-    //console.log('Java ' + clientAddress + ' connected');
     javaSocket.on('data', firstDataListenner);
 
 
 });
 
-
-
  javaServer.listen(javaPort);
 
- ////////////////////////////// Http Server \\\\\\\\\\\\\\\\\\\\\\\\
+//#endregion
+
+//#region ////////////////// NodeJS-WebPage server Functions and Initialization\\\\\\\\\\\\\\\\\\\\\\\\\
 
 serverHT = httpHT.Server(appHT);
 
@@ -108,4 +107,4 @@ serverHT.listen(PORTu, HOSTu);
 
 ioHT = socketIOHT(serverHT);
 
-///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//#endregion
