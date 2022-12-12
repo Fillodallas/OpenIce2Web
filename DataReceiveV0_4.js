@@ -1,4 +1,10 @@
+///////////////////////////////Setup LocalHost initializer : allow the user to select the Host Address\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 //////////////////// Connect with MDPnP \\\\\\\\\\\\\\\\\\\\\\\\\
+
 
 var javaPort = 8080;
 var javaServer = require('net').createServer();
@@ -14,11 +20,10 @@ var expressHT = require('express'),
     socketIOHT = require('socket.io'),
     serverHT, ioHT;
 
-var webHOST = "localhost";
-var webPORT = 3030;
-///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const { HOSTu, PORTu } = require('./public/js/webAddress');
 
-//////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 appHT.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
     });
@@ -91,7 +96,7 @@ javaServer.on('connection', function (javaSocket) {
 serverHT = httpHT.Server(appHT);
 
 serverHT.on('listening', function () {
-    console.log('Serving address: '+ webHOST + ":" + webPORT);
+    console.log('Serving address: '+'http://'+ HOSTu + ":" + PORTu);
  });
 
 serverHT.on('error', function (e) {
@@ -99,7 +104,7 @@ serverHT.on('error', function (e) {
 });
 
 
-serverHT.listen(webPORT, webHOST);
+serverHT.listen(PORTu, HOSTu);
 
 ioHT = socketIOHT(serverHT);
 

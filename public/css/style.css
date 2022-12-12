@@ -517,6 +517,7 @@ h6 {
   color: #C2C2C2;
   background: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193b);
   background-image: radial-gradient(farthest-side at 10% 0px, rgb(51, 56, 103) 20%, rgb(23, 25, 59));
+  background-attachment: fixed;
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -526,7 +527,7 @@ h6 {
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
-  background-attachment: fixed;
+ 
   background-size: cover;
   background-repeat: no-repeat;
   color: rgba(244, 244, 245, 0.901961);
@@ -1320,7 +1321,7 @@ input:checked + .slider:before {
 }
 
 /*--------------------------------------------------------------
-# Options Popup
+# Settings Popup
 --------------------------------------------------------------*/
 
 .popup {
@@ -1333,8 +1334,10 @@ input:checked + .slider:before {
   width:500px;
   height: 500px;
   padding:20px 30px ;
-  background:  #333867;
-  box-shadow:2px 2px 5px 5px rgba(0,0,0,0.15);
+  
+  background: #11101D;
+  /*background:  #333867;*/
+  box-shadow:2px 2px 5px 5px rgba(0,0,0,0.20);
   border-radius:10px;
   z-index: 10;
   transition:top 0ms ease-in-out 200ms,
@@ -1414,6 +1417,18 @@ input:checked + .slider:before {
   color:#1a79ca;
   text-decoration:none;
   font-weight:600;
+}
+
+.settings-btn {
+  color: #C2C2C2;
+  border-color: #333867;
+  border-radius: 6rem;
+}
+
+.settings-btn:hover {
+  
+  background-color: #333867;
+  
 }
 
 /*********************************************************************/
