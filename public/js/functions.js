@@ -86,8 +86,6 @@ function checkCollapse(collapsable, idDisplay, idKey) {
 }
 
 function changeArrow(iconID) {
-  console.log(iconID);
-  console.log(document.getElementById(iconID).className);
   if (document.getElementById(iconID).className == "bi bi-chevron-up ms-auto") {
     document.getElementById(iconID).className = "bi bi-chevron-down ms-auto";
   } else {

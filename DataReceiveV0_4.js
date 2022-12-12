@@ -15,8 +15,12 @@ var expressHT = require('express'),
     httpHT = require('http'),
     socketIOHT = require('socket.io'),
     serverHT, ioHT;
+const { webHOST, webPORT } = require('./public/config/default');
 
-const { HOSTu, PORTu } = require('./public/js/webAddress');
+
+
+
+
 //#endregion 
 
 //#region //////////////////// Send static files for Index page \\\\\\\\\\\\\\\\\\\\\\\\\
@@ -26,10 +30,14 @@ appHT.get('/', function (req, res) {
     });
     
     
-    appHT.use(expressHT.static('public'))
+    appHT.use(expressHT.static('public'));
     appHT.use('/css', expressHT.static(__dirname + '/public/css'));
     appHT.use('/js', expressHT.static(__dirname + '/public/js'));
     appHT.use('/img', expressHT.static(__dirname + '/public/img'));
+    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
+
+    
+    
 
 //#endregion
 
@@ -43,6 +51,7 @@ appHT.get('/graphs', function (req, res) {
     appHT.use('/css', expressHT.static(__dirname + '/public/css'));
     appHT.use('/js', expressHT.static(__dirname + '/public/js'));
     appHT.use('/img', expressHT.static(__dirname + '/public/img'));
+    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
 
 //#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -95,7 +104,7 @@ javaServer.on('connection', function (javaSocket) {
 serverHT = httpHT.Server(appHT);
 
 serverHT.on('listening', function () {
-    console.log('Serving address: '+'http://'+ HOSTu + ":" + PORTu);
+    console.log('Serving address: '+'http://'+ webHOST + ":" + webPORT);
  });
 
 serverHT.on('error', function (e) {
@@ -103,7 +112,7 @@ serverHT.on('error', function (e) {
 });
 
 
-serverHT.listen(PORTu, HOSTu);
+serverHT.listen(webPORT, webHOST);
 
 ioHT = socketIOHT(serverHT);
 
