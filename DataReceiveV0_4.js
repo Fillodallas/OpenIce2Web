@@ -22,50 +22,34 @@ const { webHOST, webPORT } = require('./public/config/default');
 
 //#region ////////////////////////////// WEB PAGES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-//#region //////////////////// Send static files for Index page \\\\\\\\\\\\\\\\\\\\\\\\\
+//#region //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
+appHT.use(expressHT.static('public'));
+appHT.use('/css', expressHT.static(__dirname + '/public/css'));
+appHT.use('/js', expressHT.static(__dirname + '/public/js'));
+appHT.use('/img', expressHT.static(__dirname + '/public/img'));
+appHT.use('/config', expressHT.static(__dirname + '/public/config'));
+
+//#endregion //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
+
+//#region //////////////////// Index page \\\\\\\\\\\\\\\\\\\\\\\\\
 
 appHT.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/public/html/index.html');
     });
-    
-    
-    appHT.use(expressHT.static('public'));
-    appHT.use('/css', expressHT.static(__dirname + '/public/css'));
-    appHT.use('/js', expressHT.static(__dirname + '/public/js'));
-    appHT.use('/img', expressHT.static(__dirname + '/public/img'));
-    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
-
-    
-    
-
 //#endregion
 
-//#region //////////////////// Send static files for Graph page \\\\\\\\\\\\\\\\\\\\\\\\\
+//#region //////////////////// Graph page \\\\\\\\\\\\\\\\\\\\\\\\\
 appHT.get('/graphs', function (req, res) {
-    res.sendFile(__dirname + '/graphs.html');
+    res.sendFile(__dirname + '/public/html/graphs.html');
     });
-    
-    
-    appHT.use(expressHT.static('public'))
-    appHT.use('/css', expressHT.static(__dirname + '/public/css'));
-    appHT.use('/js', expressHT.static(__dirname + '/public/js'));
-    appHT.use('/img', expressHT.static(__dirname + '/public/img'));
-    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
 
 //#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-//#region //////////////////// Send static files for Monitor page \\\\\\\\\\\\\\\\\\\\\\\\\
+//#region //////////////////// Monitor page \\\\\\\\\\\\\\\\\\\\\\\\\
 appHT.get('/monitor', function (req, res) {
-    res.sendFile(__dirname + '/monitor.html');
+    res.sendFile(__dirname + '/public/html/monitor.html');
     });
     
-    
-    appHT.use(expressHT.static('public'))
-    appHT.use('/css', expressHT.static(__dirname + '/public/css'));
-    appHT.use('/js', expressHT.static(__dirname + '/public/js'));
-    appHT.use('/img', expressHT.static(__dirname + '/public/img'));
-    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
-
 //#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
