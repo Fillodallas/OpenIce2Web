@@ -37,7 +37,6 @@ import java.net.Socket;
 ////////////////////////////////////////////////////
 
 
-
 /**
  * @author Jeff Plourde
  *
@@ -73,6 +72,20 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
             numericSample(SimMultiparameter.this.SpO2, SpO2, sampleTime);
             pleth = sampleArraySample(pleth, plethValues, rosetta.MDC_PULS_OXIM_PLETH.VALUE, "", 0, 
                     rosetta.MDC_DIM_DIMLESS.VALUE, frequency, sampleTime);
+
+            ////////////////////////////////////// SEND MESSAGE \\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            String msg = pleth.data.metric_id+"SIM" + ":" + pleth.data.values.userData;
+            //System.out.println(pleth.data.metric_id+"SIM" +": " +  pleth.data.values.userData);
+            try (Socket nodejs = new Socket(HOST, PORT)){
+
+                sendMessage(nodejs, msg);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            /////////////////////////////////////////////////////////////////////////////
         }
     }
     
@@ -91,7 +104,6 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
             ////////////////////////////////////// SEND MESSAGE \\\\\\\\\\\\\\\\\\\\\\\\\\
 
             String msg = pressure.data.metric_id+"SIM" + ":" + pressure.data.values.userData;
-            System.out.println(pressure.data.metric_id+"SIM");
             try (Socket nodejs = new Socket(HOST, PORT)){
 
                 sendMessage(nodejs, msg);

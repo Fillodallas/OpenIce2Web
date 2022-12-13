@@ -1439,6 +1439,13 @@ input:checked + .slider:before {
   margin-top: 0px!important; 
 }
 
+.sideText{
+  color: #e2e5ec;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0px 0px 0px 5px;
+}
+
 
 .row-style{
   background-color: #11101D!important;
@@ -1450,6 +1457,7 @@ input:checked + .slider:before {
 
 .container-fluid {
   height: 100vh;
+  padding: 0px 3% 0px 3%;
 }
 
 .chart-title{
