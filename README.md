@@ -31,7 +31,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
     ```
 4. Run the server:
     ```
-    node DataReceiveV0_4.js
+    node main.js
     ```
     or the command
     ```
