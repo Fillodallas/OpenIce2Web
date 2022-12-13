@@ -1431,4 +1431,122 @@ input:checked + .slider:before {
   
 }
 
-/*********************************************************************/
+/*--------------------------------------------------------------
+# Monitor Page
+--------------------------------------------------------------*/
+
+.monitor {
+  margin-top: 0px!important; 
+}
+
+
+.row-style{
+  background-color: #11101D!important;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1px;
+  border-color: #C2C2C2;
+}
+
+.container-fluid {
+  height: 100vh;
+}
+
+.chart-title{
+  position:relative;
+  color:#FFFF;
+  font-weight: bold;
+  text-align: center;
+}
+.graph-title{
+  position:relative;
+  color:#FFFF;
+  font-weight: bold;
+  padding: 5px 0% 0% 0% ;
+}
+
+.bodyVal{
+  position:relative;
+  padding: 18px 10px 18px 10px;
+  color:#ffff;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 600;
+  vertical-align: middle;
+  
+}
+
+/*-----------------ECG-------------------*/
+
+.h-33{
+  height: 33%!important;
+
+}
+
+.h-20{
+  height: 20%!important;
+
+}
+
+
+.ECG-colbody{
+  background: #2fd158;
+  height: 100%;
+  border-radius:0.5rem
+}
+
+
+.ECG-head{
+  background: #29832d;
+  border-radius:0.5rem
+}
+
+
+/*-----------------SpO2-------------------*/
+
+
+.SpO2-colbody{
+  background: #4f84e5;
+  height: 100%;
+  border-radius:0.5rem
+}
+
+
+.SpO2-head{
+  background: #2f508d;
+  border-radius:0.5rem
+}
+
+
+/*-----------------CO2-------------------*/
+
+
+.CO2-colbody{
+  background: #e2e54f;
+  height: 100%;
+  border-radius:0.5rem
+}
+
+
+.CO2-head{
+  background: #9fa107;
+  border-radius:0.5rem
+}
+
+
+/*-----------------ABP-------------------*/
+
+
+.ABP-colbody{
+  background: #e54f4f;
+  height: 100%;
+  border-radius:0.5rem
+}
+
+
+.ABP-head{
+  background: #8d2f2f;
+  border-radius:0.5rem
+}
+
+

@@ -76,8 +76,8 @@
     <ul class="nav-list">
       <li>
         <i class='bx bx-search'></i>
-        <input type="text" placeholder="Search..." name ="">
-        
+        <input type="text" placeholder="Search..." name="">
+
         <span class="tooltip">Search</span>
       </li>
       <li>
@@ -88,6 +88,13 @@
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
+        <a href="/monitor">
+          <i class='bx bx-tv'></i>
+          <span class="links_name">Monitor</span>
+        </a>
+        <span class="tooltip">Monitor</span>
+      </li>
+      <li>
         <a href="/graphs">
           <i class='bx bx-pie-chart-alt-2'></i>
           <span class="links_name">Analytics</span>
@@ -95,13 +102,7 @@
         <span class="tooltip">Analytics</span>
       </li>
 
-      <li>
-        <a href="#">
-          <i class='bx bx-user'></i>
-          <span class="links_name">Lorem Ipsum</span>
-        </a>
-        <span class="tooltip">Lorem</span>
-      </li>
+      
       <li>
         <a href="#">
           <i class='bx bx-chat'></i>
@@ -764,7 +765,17 @@
           Lab = Array.from(Array(arr.length).keys());
           setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
           break;
+
+        case "MDC_PULS_OXIM_PLETHSIM":
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+          
+          break;
+
+        
         //#endregion Waveform data sorting
+
+
       }
       //#endregion Data distribution
 

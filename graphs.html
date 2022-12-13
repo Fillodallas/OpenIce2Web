@@ -14,7 +14,9 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -55,11 +57,12 @@
 
       </div>
       <div class="d-flex justify-content-between mt-lg">
-        <a role="button" target="_blank" href="https://github.com/Fillodallas/OpenIce2Web" class="btn fs-mini settings-btn">
-            <i class='bx bxl-github'></i>
-            GitHub
+        <a role="button" target="_blank" href="https://github.com/Fillodallas/OpenIce2Web"
+          class="btn fs-mini settings-btn">
+          <i class='bx bxl-github'></i>
+          GitHub
         </a>
-    </div>
+      </div>
     </div>
   </div>
   <!-- ======= End Setting ====== -->
@@ -74,8 +77,8 @@
     <ul class="nav-list">
       <li>
         <i class='bx bx-search'></i>
-        <input type="text" placeholder="Search..." name ="">
-        
+        <input type="text" placeholder="Search..." name="">
+
         <span class="tooltip">Search</span>
       </li>
       <li>
@@ -86,6 +89,13 @@
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
+        <a href="/monitor">
+          <i class='bx bx-tv'></i>
+          <span class="links_name">Monitor</span>
+        </a>
+        <span class="tooltip">Monitor</span>
+      </li>
+      <li>
         <a href="/graphs">
           <i class='bx bx-pie-chart-alt-2'></i>
           <span class="links_name">Analytics</span>
@@ -93,13 +103,7 @@
         <span class="tooltip">Analytics</span>
       </li>
 
-      <li>
-        <a href="#">
-          <i class='bx bx-user'></i>
-          <span class="links_name">Lorem Ipsum</span>
-        </a>
-        <span class="tooltip">Lorem</span>
-      </li>
+      
       <li>
         <a href="#">
           <i class='bx bx-chat'></i>
@@ -154,34 +158,7 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Graph Page-->
-    <section class="resume-section" id="graph">
-      <div class="resume-section-content">
-        <h2 class="mb-5">Graph</h2>
-
-        <!-- Live Graph Card -->
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Live Graph <span>/ RR</span></h5>
-
-              <!-- Line Chart -->
-
-              <div>
-                <canvas id="CapanomChart"></canvas>
-              </div>
-              <!--
-              <div>
-                <canvas id="ABPChart"></canvas>
-              </div>
-              -->
-              <!-- End Line Chart -->
-            </div>
-          </div>
-        </div><!-- End Live Graph Card -->
-
-      </div>
-    </section>
+    
 
   </main>
 
@@ -199,7 +176,7 @@
 
   <script type="text/javascript">
 
-    
+
     var socket = io(webHOST + ":" + webPORT);
 
     //#region Graphs Initialization 
@@ -248,7 +225,7 @@
     });
     //#endregion CO2 Capanometer
 
-  
+
     //#endregion Live Wave Graphs 
 
     //#endregion Graphs Initialization
@@ -340,14 +317,12 @@
 
           arr = maptoNum(arr[1]);
           Lab = Array.from(Array(arr.length).keys());
-          setInterval(reLoad(CapanomChart, arr, Lab, 170), 1000);
 
           break;
 
         case "MDC_ECG_LEAD_ISIM":
           arr = maptoNum(arr[1]);
-          arr = arr.map(function(x) { return x / 1; });
-          console.log(arr);
+          arr = arr.map(function (x) { return x / 1; });
           Lab = Array.from(Array(arr.length).keys());
           setInterval(reLoad(lIChart, arr, Lab, 200), 800);
           break;
@@ -367,7 +342,17 @@
           Lab = Array.from(Array(arr.length).keys());
           setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
           break;
+
+        case "MDC_PULS_OXIM_PLETHSIM":
+          arr = maptoNum(arr[1]);
+          Lab = Array.from(Array(arr.length).keys());
+
+          break;
+
+
         //#endregion Waveform data sorting
+
+
       }
       //#endregion Data distribution
 
@@ -376,14 +361,14 @@
     //#endregion Sezione ricezione dati
 
 
-    //#region Function Section 
+    //#region Function Section
 
     ///////Toggle Init \\\\\\\\\\\
 
 
     //#endregion Function Section 
 
-    
+
 
   </script>
 

@@ -18,10 +18,9 @@ var expressHT = require('express'),
 const { webHOST, webPORT } = require('./public/config/default');
 
 
-
-
-
 //#endregion 
+
+//#region ////////////////////////////// WEB PAGES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 //#region //////////////////// Send static files for Index page \\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -54,6 +53,24 @@ appHT.get('/graphs', function (req, res) {
     appHT.use('/config', expressHT.static(__dirname + '/public/config'));
 
 //#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+//#region //////////////////// Send static files for Monitor page \\\\\\\\\\\\\\\\\\\\\\\\\
+appHT.get('/monitor', function (req, res) {
+    res.sendFile(__dirname + '/monitor.html');
+    });
+    
+    
+    appHT.use(expressHT.static('public'))
+    appHT.use('/css', expressHT.static(__dirname + '/public/css'));
+    appHT.use('/js', expressHT.static(__dirname + '/public/js'));
+    appHT.use('/img', expressHT.static(__dirname + '/public/img'));
+    appHT.use('/config', expressHT.static(__dirname + '/public/config'));
+
+//#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+//#endregion
+
 
 console.log('=====================================================');
 console.log('Node.js/Java Communication Module');
