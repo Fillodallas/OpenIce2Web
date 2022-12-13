@@ -2,9 +2,9 @@
   "name": "m2w_0_00",
   "version": "1.0.0",
   "description": "This program facilitates communication between a program written in Java (Open ICE) and a JavaScript server.\r The data transmitted by the OpenIce program is displayed by a Webpage served by the server.",
-  "main": "DataReceiveV0_4.js",
+  "main": "main.js",
   "scripts": {
-    "nodemon": "nodemon DataReceiveV0_4.js"
+    "nodemon": "nodemon main.js"
   },
   "author": "",
   "license": "ISC",
