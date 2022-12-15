@@ -15,10 +15,19 @@ function toggleBTNs(chbox, chart) {
     .addEventListener("click", function handleClick() {
       if (document.getElementById(chbox).checked) {
         document.getElementById(chart).style.display = "block";
+        window.scroll(0, 65);
       } else {
         document.getElementById(chart).style.display = "none";
+        window.scroll(0, -65);
       }
     });
+}
+
+function isToggled(chbox) {
+  document.getElementById(chbox);
+  if (document.getElementById(chbox).checked) {
+  } else {
+  }
 }
 
 function maptoNum(str) {
@@ -118,4 +127,4 @@ function menuBtnChange() {
     closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
   }
 }
-//#endregion Sidebar Controller 
+//#endregion Sidebar Controller

@@ -53,9 +53,16 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
@@ -80,8 +87,16 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193b);
-  background-image: radial-gradient(farthest-side at 10% 0px, rgb(51, 56, 103) 20%, rgb(23, 25, 59));
+  background: radial-gradient(
+    farthest-side ellipse at 10% 0,
+    #333867 20%,
+    #17193b
+  );
+  background-image: radial-gradient(
+    farthest-side at 10% 0px,
+    rgb(51, 56, 103) 20%,
+    rgb(23, 25, 59)
+  );
   background-attachment: fixed;
   color: rgba(244, 244, 245, 0.901961);
 }
@@ -111,10 +126,9 @@ h6 {
 #main {
   margin-top: 60px;
   margin-left: 60px;
-  padding: 20px ;
+  padding: 20px;
   padding-left: 30px;
   transition: all 0.3s;
-  
 }
 
 @media (max-width: 1199px) {
@@ -122,7 +136,6 @@ h6 {
     padding: 20px;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Corner Title
@@ -147,7 +160,6 @@ h6 {
   line-height: 1;
   margin: 11px 0 18px;
 }
-
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -318,8 +330,8 @@ h6 {
 /* Card */
 .card {
   margin-bottom: 30px;
-  background: #0000003D;
-  color: #F4F4F599;
+  background: #0000003d;
+  color: #f4f4f599;
   border: none;
   border-radius: 0.725rem;
   box-shadow: 0 25px 20px -20px rgb(0 0 0 / 20%), 0 0 15px rgb(0 0 0 / 16%);
@@ -473,8 +485,6 @@ h6 {
   }
 }
 
-
-
 .logo img {
   max-height: 26px;
   margin-right: 6px;
@@ -491,8 +501,16 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193b);
-  background-image: radial-gradient(farthest-side at 10% 0px, rgb(51, 56, 103) 20%, rgb(23, 25, 59));
+  background: radial-gradient(
+    farthest-side ellipse at 10% 0,
+    #333867 20%,
+    #17193b
+  );
+  background-image: radial-gradient(
+    farthest-side at 10% 0px,
+    rgb(51, 56, 103) 20%,
+    rgb(23, 25, 59)
+  );
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -514,9 +532,17 @@ h6 {
 .header .toggle-sidebar-btn {
   font-size: 32px;
   cursor: pointer;
-  color: #C2C2C2;
-  background: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193b);
-  background-image: radial-gradient(farthest-side at 10% 0px, rgb(51, 56, 103) 20%, rgb(23, 25, 59));
+  color: #c2c2c2;
+  background: radial-gradient(
+    farthest-side ellipse at 10% 0,
+    #333867 20%,
+    #17193b
+  );
+  background-image: radial-gradient(
+    farthest-side at 10% 0px,
+    rgb(51, 56, 103) 20%,
+    rgb(23, 25, 59)
+  );
   background-attachment: fixed;
   background-position-x: initial;
   background-position-y: initial;
@@ -527,7 +553,7 @@ h6 {
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
- 
+
   background-size: cover;
   background-repeat: no-repeat;
   color: rgba(244, 244, 245, 0.901961);
@@ -538,46 +564,43 @@ h6 {
   right: 25px;
   font-size: 22px;
   cursor: pointer;
-  color: #C2C2C2;
-  
+  color: #c2c2c2;
 }
 
 .header .toggle-sidebar-btn:hover,
 .header .toggle-option-btn:hover {
-
   color: #ffffff;
-  
 }
 
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
 
-.sidebar{
+.sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
   width: 78px;
-  background: #11101D;
+  background: #11101d;
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
 }
-.sidebar.open{
+.sidebar.open {
   width: 250px;
 }
-.sidebar .logo-details{
+.sidebar .logo-details {
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
-.sidebar .logo-details .icon{
+.sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
 }
-.sidebar .logo-details .logo_name{
+.sidebar .logo-details .logo_name {
   padding: 3px 0px 0px 20px;
   color: #fff;
   font-size: 20px;
@@ -586,10 +609,10 @@ h6 {
   transition: all 0.5s ease;
 }
 .sidebar.open .logo-details .icon,
-.sidebar.open .logo-details .logo_name{
+.sidebar.open .logo-details .logo_name {
   opacity: 1;
 }
-.sidebar .logo-details #btn{
+.sidebar .logo-details #btn {
   position: absolute;
   top: 50%;
   right: 0;
@@ -601,10 +624,10 @@ h6 {
   cursor: pointer;
   transition: all 0.5s ease;
 }
-.sidebar.open .logo-details #btn{
+.sidebar.open .logo-details #btn {
   text-align: right;
 }
-.sidebar i{
+.sidebar i {
   color: #fff;
   height: 60px;
   min-width: 50px;
@@ -612,16 +635,16 @@ h6 {
   text-align: center;
   line-height: 60px;
 }
-.sidebar .nav-list{
+.sidebar .nav-list {
   margin-top: 20px;
   height: 100%;
 }
-.sidebar li{
+.sidebar li {
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
-.sidebar li .tooltip{
+.sidebar li .tooltip {
   position: absolute;
   top: -20px;
   left: calc(100% + 15px);
@@ -638,19 +661,19 @@ h6 {
   pointer-events: none;
   transition: 0s;
 }
-.sidebar li:hover .tooltip{
+.sidebar li:hover .tooltip {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
   top: 50%;
   transform: translateY(-50%);
 }
-.sidebar.open li .tooltip{
+.sidebar.open li .tooltip {
   display: none;
 }
-.sidebar input{
+.sidebar input {
   font-size: 15px;
-  color: #FFF;
+  color: #fff;
   font-weight: 400;
   outline: none;
   height: 50px;
@@ -661,28 +684,28 @@ h6 {
   transition: all 0.5s ease;
   background: #1d1b31;
 }
-.sidebar.open input{
+.sidebar.open input {
   padding: 0 20px 0 50px;
   width: 100%;
 }
-.sidebar .bx-search{
+.sidebar .bx-search {
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
   font-size: 22px;
   background: #1d1b31;
-  color: #FFF;
+  color: #fff;
 }
-.sidebar.open .bx-search:hover{
+.sidebar.open .bx-search:hover {
   background: #1d1b31;
-  color: #FFF;
+  color: #fff;
 }
-.sidebar .bx-search:hover{
-  background: #FFF;
+.sidebar .bx-search:hover {
+  background: #fff;
   color: #11101d;
 }
-.sidebar li a{
+.sidebar li a {
   display: flex;
   height: 100%;
   width: 100%;
@@ -690,12 +713,12 @@ h6 {
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: #11101D;
+  background: #11101d;
 }
-.sidebar li a:hover{
-  background: #FFF;
+.sidebar li a:hover {
+  background: #fff;
 }
-.sidebar li a .links_name{
+.sidebar li a .links_name {
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -704,22 +727,22 @@ h6 {
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open li a .links_name{
+.sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;
 }
 .sidebar li a:hover .links_name,
-.sidebar li a:hover i{
+.sidebar li a:hover i {
   transition: all 0.5s ease;
-  color: #11101D;
+  color: #11101d;
 }
-.sidebar li i{
+.sidebar li i {
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
-.sidebar li.profile{
+.sidebar li.profile {
   position: fixed;
   height: 60px;
   width: 78px;
@@ -730,15 +753,15 @@ h6 {
   transition: all 0.5s ease;
   overflow: hidden;
 }
-.sidebar.open li.profile{
+.sidebar.open li.profile {
   width: 250px;
 }
-.sidebar li .profile-details{
+.sidebar li .profile-details {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
 }
-.sidebar li img{
+.sidebar li img {
   height: 45px;
   width: 45px;
   object-fit: cover;
@@ -746,16 +769,16 @@ h6 {
   margin-right: 10px;
 }
 .sidebar li.profile .name,
-.sidebar li.profile .job{
+.sidebar li.profile .job {
   font-size: 15px;
   font-weight: 400;
   color: #fff;
   white-space: nowrap;
 }
-.sidebar li.profile .job{
+.sidebar li.profile .job {
   font-size: 12px;
 }
-.sidebar .profile #log_out{
+.sidebar .profile #log_out {
   position: absolute;
   top: 50%;
   right: 0;
@@ -767,13 +790,13 @@ h6 {
   border-radius: 0px;
   transition: all 0.5s ease;
 }
-.sidebar.open .profile #log_out{
+.sidebar.open .profile #log_out {
   width: 50px;
   background: none;
 }
-.home-section{
+.home-section {
   position: relative;
-  background: #E4E9F7;
+  background: #e4e9f7;
   min-height: 100vh;
   top: 0;
   left: 78px;
@@ -781,28 +804,28 @@ h6 {
   transition: all 0.5s ease;
   z-index: 2;
 }
-.sidebar.open ~ #main{
+.sidebar.open ~ #main {
   margin-left: 250px;
   width: calc(100% - 250px);
 }
 
-.sidebar ol, ul {
-  padding-left: 0rem!important;
+.sidebar ol,
+ul {
+  padding-left: 0rem !important;
 }
 
-.home-section .text{
+.home-section .text {
   display: inline-block;
   color: #11101d;
   font-size: 25px;
   font-weight: 500;
-  margin: 18px
+  margin: 18px;
 }
 @media (max-width: 420px) {
-  .sidebar li .tooltip{
+  .sidebar li .tooltip {
     display: none;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Dashboard
@@ -822,7 +845,8 @@ h6 {
   right: auto;
 }
 
-.widget-controls > a, .widget-controls > span {
+.widget-controls > a,
+.widget-controls > span {
   padding: 1px 4px;
   border-radius: 4px;
   color: rgba(255, 255, 255, 0.45);
@@ -831,11 +855,13 @@ h6 {
   transition: color 0.15s ease-in-out;
 }
 
-.widget-controls > a > .fa, .widget-controls > span > .fa {
+.widget-controls > a > .fa,
+.widget-controls > span > .fa {
   vertical-align: middle;
 }
 
-.widget-controls > a > .glyphicon, .widget-controls > span > .glyphicon {
+.widget-controls > a > .glyphicon,
+.widget-controls > span > .glyphicon {
   vertical-align: -1px;
 }
 
@@ -1040,7 +1066,7 @@ h6 {
   padding: 12px 15px;
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #4154f1;
   border: 0;
   padding: 10px 30px;
@@ -1049,7 +1075,7 @@ h6 {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #5969f3;
 }
 
@@ -1142,7 +1168,7 @@ h6 {
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -1156,8 +1182,8 @@ h6 {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -1168,8 +1194,8 @@ h6 {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -1195,12 +1221,11 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.chart-container{
-  height: 200px!important;
-  width: 100%!important;
-  justify-items: center!important;
+.chart-container {
+  height: 200px !important;
+  width: 100% !important;
+  justify-items: center !important;
 }
-
 
 /***********************************/
 /**          WIDGET               **/
@@ -1212,7 +1237,7 @@ input:checked + .slider:before {
   box-sizing: content-box;
   padding: 12px 17px;
   color: #f8f8f8;
-  background: #0000003D;
+  background: #0000003d;
   margin-bottom: 30px;
   position: relative;
   box-shadow: 0 25px 20px -20px rgb(0 0 0 / 20%), 0 0 15px rgb(0 0 0 / 16%);
@@ -1258,14 +1283,22 @@ input:checked + .slider:before {
   color: white;
 }
 
-.widget > header h1, .widget > header h2, .widget > header h3, .widget > header h4, .widget > header h5 {
+.widget > header h1,
+.widget > header h2,
+.widget > header h3,
+.widget > header h4,
+.widget > header h5 {
   margin: 0;
   line-height: 20px;
   font-weight: 600;
   color: inherit;
 }
 
-.widget > header h1 small, .widget > header h2 small, .widget > header h3 small, .widget > header h4 small, .widget > header h5 small {
+.widget > header h1 small,
+.widget > header h2 small,
+.widget > header h3 small,
+.widget > header h4 small,
+.widget > header h5 small {
   text-transform: lowercase;
   color: #d2d2d2;
 }
@@ -1325,110 +1358,101 @@ input:checked + .slider:before {
 --------------------------------------------------------------*/
 
 .popup {
-  position:absolute;
-  
-  top:-150%;
-  left:50%;
-  opacity:0;
-  transform:translate(-50%,-50%) scale(1.25);
-  width:500px;
-  height: 500px;
-  padding:20px 30px ;
-  
-  background: #11101D;
-  /*background:  #333867;*/
-  box-shadow:2px 2px 5px 5px rgba(0,0,0,0.20);
-  border-radius:10px;
-  z-index: 10;
-  transition:top 0ms ease-in-out 200ms,
-             opacity 200ms ease-in-out 0ms,
-             transform 200ms ease-in-out 0ms; 
+  position: absolute;
 
-             
+  top: -150%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.25);
+  width: 500px;
+  height: 500px;
+  padding: 20px 30px;
+
+  background: #11101d;
+  /*background:  #333867;*/
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 10;
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
 }
 .popup.active {
-  top:50%;
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1);
-  transition:top 0ms ease-in-out 0ms,
-             opacity 200ms ease-in-out 0ms,
-             transform 200ms ease-in-out 0ms;
+  top: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
 }
 
-.popup .option-close{
-  position:absolute;
-  top:10px;
-  right:10px;
-  width:25px;
-  height:25px;
-  cursor:pointer;
-  color: #C2C2C2;
-  
+.popup .option-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #c2c2c2;
 }
-
 
 .popup .option-close:hover {
-
   color: #ffffff;
-  
 }
 
 .popup .form h2 {
-  text-align:center;
-  color:#C2C2C2;
-  margin:10px 0px 20px;
-  font-size:25px;
+  text-align: center;
+  color: #c2c2c2;
+  margin: 10px 0px 20px;
+  font-size: 25px;
 }
 .popup .form .form-element {
-  margin:15px 0px;
+  margin: 15px 0px;
 }
 .popup .form .form-element label {
-  font-size:14px;
-  color:#222;
+  font-size: 14px;
+  color: #222;
 }
 .popup .form .form-element input[type="text"],
 .popup .form .form-element input[type="password"] {
-  margin-top:5px;
-  display:block;
-  width:100%;
-  padding:10px;
-  outline:none;
-  border:1px solid #aaa;
-  border-radius:5px;
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 .popup .form .form-element input[type="checkbox"] {
-  margin-right:5px;
+  margin-right: 5px;
 }
 .popup .form .form-element button {
-  width:100%;
-  height:40px;
-  border:none;
-  outline:none;
-  font-size:16px;
-  background:#222;
-  color:#f5f5f5;
-  border-radius:10px;
-  cursor:pointer;
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #222;
+  color: #f5f5f5;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .popup .form .form-element a {
-  display:block;
-  text-align:right;
-  font-size:15px;
-  color:#1a79ca;
-  text-decoration:none;
-  font-weight:600;
+  display: block;
+  text-align: right;
+  font-size: 15px;
+  color: #1a79ca;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .settings-btn {
-  color: #C2C2C2;
+  color: #c2c2c2;
   border-color: #333867;
   border-radius: 6rem;
 }
 
 .settings-btn:hover {
-  
   background-color: #333867;
-  
 }
 
 /*--------------------------------------------------------------
@@ -1436,23 +1460,22 @@ input:checked + .slider:before {
 --------------------------------------------------------------*/
 
 .monitor {
-  margin-top: 0px!important; 
+  margin-top: 0px !important;
 }
 
-.sideText{
+.sideText {
   color: #e2e5ec;
   font-size: 12px;
   font-weight: 400;
   padding: 0px 0px 0px 5px;
 }
 
-
-.row-style{
-  background-color: #11101D!important;
+.row-style {
+  background-color: #11101d !important;
   border-radius: 0.5rem;
   border-style: solid;
   border-width: 0.1px;
-  border-color: #C2C2C2;
+  border-color: #c2c2c2;
 }
 
 .container-fluid {
@@ -1460,101 +1483,106 @@ input:checked + .slider:before {
   padding: 0px 3% 0px 3%;
 }
 
-.chart-title{
-  position:relative;
-  color:#FFFF;
+.chart-title {
+  position: relative;
+  color: #ffff;
   font-weight: bold;
   text-align: center;
 }
-.graph-title{
-  position:relative;
-  color:#FFFF;
+.graph-title {
+  position: relative;
+  color: #ffff;
   font-weight: bold;
-  padding: 5px 0% 0% 0% ;
+  padding: 5px 0% 0% 0%;
 }
 
-.bodyVal{
-  position:relative;
+.bodyVal {
+  position: relative;
   padding: 18px 10px 18px 10px;
-  color:#ffff;
+  color: #ffff;
   text-align: center;
   font-size: 80px;
   font-weight: 600;
   vertical-align: middle;
-  
 }
 
 /*-----------------ECG-------------------*/
 
-.h-33{
-  height: 33%!important;
-
-}
-
-.h-20{
-  height: 20%!important;
-
-}
-
-
-.ECG-colbody{
+.ECG-colbody {
   background: #2fd158;
   height: 100%;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
 
-
-.ECG-head{
+.ECG-head {
   background: #29832d;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
-
 
 /*-----------------SpO2-------------------*/
 
-
-.SpO2-colbody{
+.SpO2-colbody {
   background: #4f84e5;
   height: 100%;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
 
-
-.SpO2-head{
+.SpO2-head {
   background: #2f508d;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
-
 
 /*-----------------CO2-------------------*/
 
-
-.CO2-colbody{
+.CO2-colbody {
   background: #e2e54f;
   height: 100%;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
 
-
-.CO2-head{
+.CO2-head {
   background: #9fa107;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
-
 
 /*-----------------ABP-------------------*/
 
-
-.ABP-colbody{
+.ABP-colbody {
   background: #e54f4f;
   height: 100%;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
 
-
-.ABP-head{
+.ABP-head {
   background: #8d2f2f;
-  border-radius:0.5rem
+  border-radius: 0.5rem;
 }
 
+/*--------------------------------------------------------------
+# Height settings
+--------------------------------------------------------------*/
 
+.h-10 {
+  height: 10% !important;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-33 {
+  height: 33% !important;
+}
+
+.h-90 {
+  height: 90% !important;
+}
+
+/*--------------------------------------------------------------
+# GitHub settings
+--------------------------------------------------------------*/
+
+.gitBtn-pos {
+  position: relative;
+  bottom: -172px;
+}

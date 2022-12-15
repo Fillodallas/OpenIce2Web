@@ -21,6 +21,15 @@ const { webHOST, webPORT } = require('./public/config/default');
 //#endregion 
 
 //#region ////////////////////////////// WEB PAGES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//#region view engine setup
+const path = require('path');
+const indexRouter = require('./routes/index');
+appHT.set('views', path.join(__dirname, 'views'));
+appHT.engine('html', require('ejs').renderFile);
+appHT.set('view engine', 'html');
+appHT.use('/', indexRouter);
+
+//#endregion 
 
 //#region //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
 appHT.use(expressHT.static('public'));
@@ -30,28 +39,6 @@ appHT.use('/img', expressHT.static(__dirname + '/public/img'));
 appHT.use('/config', expressHT.static(__dirname + '/public/config'));
 
 //#endregion //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
-
-//#region //////////////////// Index page \\\\\\\\\\\\\\\\\\\\\\\\\
-
-appHT.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/html/index.html');
-    });
-//#endregion
-
-//#region //////////////////// Graph page \\\\\\\\\\\\\\\\\\\\\\\\\
-appHT.get('/graphs', function (req, res) {
-    res.sendFile(__dirname + '/public/html/graphs.html');
-    });
-
-//#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-//#region //////////////////// Monitor page \\\\\\\\\\\\\\\\\\\\\\\\\
-appHT.get('/monitor', function (req, res) {
-    res.sendFile(__dirname + '/public/html/monitor.html');
-    });
-    
-//#endregion ///////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 
 //#endregion
 

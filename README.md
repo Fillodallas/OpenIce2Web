@@ -24,14 +24,22 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
    ```
     npm init -y
     npm install
+    
+    ```
+    <!--
+    If it does not work run this ==> but npm install should do the trick!!
     npm install ws 
     npm install http 
     npm install express
     npm install socket.io
-    ```
+    npm install ejs
+    npm install path
+    
+    -->
+
 4. Run the server:
     ```
-    node main.js
+    node app.js
     ```
     or the command
     ```
