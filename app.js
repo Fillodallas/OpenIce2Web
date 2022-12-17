@@ -1,10 +1,11 @@
+console.log("=====================================================");
+console.log("Node.js/Java Communication Module");
+console.log("=====================================================");
+
 //#region ////////////////// Initialize NodeJS-MDPnP server \\\\\\\\\\\\\\\\\\\\\\\\\
 
 var javaPort = 8080;
 var javaServer = require("net").createServer();
-var WebSocketServer = require("ws").Server,
-  wss = new WebSocketServer({ port: 90 });
-
 var fileData;
 //#endregion
 
@@ -19,7 +20,7 @@ const { webHOST, webPORT } = require("./public/config/default");
 
 //#endregion
 
-//#region ////////////////////////////// WEB PAGES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//#region /////////////////////////// WEB PAGES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 //#region ////////////////////////// View engine Setup \\\\\\\\\\\\\\\\\\\\\\\\\
 const path = require("path");
@@ -43,10 +44,6 @@ appHT.use("/config", expressHT.static(__dirname + "/public/config"));
 //#endregion //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
 
 //#endregion
-
-console.log("=====================================================");
-console.log("Node.js/Java Communication Module");
-console.log("=====================================================");
 
 //#region ///////////////////// Data emitter function \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 var firstDataListenner = function (data) {
