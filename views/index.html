@@ -54,7 +54,7 @@
   </head>
 
   <body class="toggle-sidebar">
-    <!-- ======= Setting ======= -->
+    <!--#region ======= Setting ======= -->
     <div class="popup">
       <div class="container h-100">
         <i class="bi bi-x-circle option-close"></i>
@@ -99,12 +99,18 @@
         </div>
       </div>
     </div>
-    <!-- ======= End Setting ====== -->
+    <!--#endregion ======= End Setting ====== -->
 
-    <!-- ======= Sidebar ======= -->
+    <!--#region ======= Sidebar ======= -->
     <div class="sidebar">
       <div class="logo-details">
-        <img class="icon" src="/img/logo.png" width="25" height="25" />
+        <img
+          class="icon"
+          alt="website logo"
+          src="/img/logo.png"
+          width="25"
+          height="25"
+        />
         <div class="logo_name">Refine2Web</div>
         <i class="bx bx-menu" id="btn"></i>
       </div>
@@ -130,11 +136,11 @@
           <span class="tooltip">Monitor</span>
         </li>
         <li>
-          <a href="/graphs">
+          <a href="/parameters">
             <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links_name">Analytics</span>
+            <span class="links_name">Parameters</span>
           </a>
-          <span class="tooltip">Analytics</span>
+          <span class="tooltip">Parameters</span>
         </li>
 
         <li>
@@ -175,11 +181,11 @@
         </li>
       </ul>
     </div>
-    <!-- ======= End Sidebar ======= -->
+    <!--#endregion ======= End Sidebar ======= -->
 
     <!-- Page Content-->
     <main id="main" class="main">
-      <!-- Page Title -->
+      <!--#region Page Title -->
       <div class="pagetitle">
         <nav>
           <ol class="breadcrumb">
@@ -188,11 +194,11 @@
           </ol>
         </nav>
       </div>
-      <!-- End Page Title -->
+      <!--#endregion End Page Title -->
 
       <section class="section dashboard">
         <div class="row">
-          <!-- Left side-->
+          <!--#region Left side-->
           <div class="col-lg-8">
             <div class="row">
               <!-- Heart Rate Card -->
@@ -374,9 +380,9 @@
               </div>
             </div>
           </div>
-          <!--End left side-->
+          <!--#endregion left side-->
 
-          <!--Right  side -->
+          <!--#region Right  side -->
           <div class="col-lg-3">
             <!-- Other Parameters -->
             <div class="card">
@@ -462,7 +468,7 @@
               <!-- End Recent Activity -->
             </div>
           </div>
-          <!-- End rigth side -->
+          <!--#endregion  rigth side -->
         </div>
       </section>
     </main>
@@ -633,47 +639,7 @@
       });
       //#endregion Plethysomgraph
 
-      //#region ART_ABP
-      const artABP = document.getElementById("ABPChart");
-      const ARTABPChart = new Chart(artABP, {
-        type: "line",
-        data: {
-          labels: [],
-          datasets: [
-            {
-              label: "Lead1",
-              data: [], //index[0]//
-              borderWidth: 1,
-              tension: 0.1, //this is the smoothness
-              borderColor: "rgb(255, 0, 0)",
-              showLine: true,
-              spanGaps: true,
-            },
-          ],
-        },
-        options: {
-          animation: {
-            duration: 0,
-          },
-          scales: {
-            y: {
-              beginAtZero: false,
-              display: false,
-            },
-
-            x: {
-              display: false,
-            },
-          },
-          elements: {
-            point: {
-              radius: 0,
-            },
-          },
-        },
-      });
-      //#endregion ART_ABP
-
+      
       //#endregion Live Wave Graphs
 
       //#endregion Graphs Initialization
@@ -786,7 +752,7 @@
           case "MDC_PRESS_BLD_ART_ABPSIM":
             arr = maptoNum(arr[1]);
             Lab = Array.from(Array(arr.length).keys());
-            setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
+            
             break;
 
           case "MDC_PULS_OXIM_PLETHSIM":
