@@ -1501,9 +1501,13 @@ input:checked + .slider:before {
   padding: 18px 10px 18px 10px;
   color: #ffff;
   text-align: center;
-  font-size: 80px;
+  font-size: 70px;
   font-weight: 600;
   vertical-align: middle;
+}
+
+.sml {
+  font-size: 60px;
 }
 
 /*-----------------ECG-------------------*/
@@ -1566,6 +1570,7 @@ input:checked + .slider:before {
   height: 10% !important;
 }
 
+
 .h-20 {
   height: 20% !important;
 }
@@ -1585,4 +1590,157 @@ input:checked + .slider:before {
 .gitBtn-pos {
   position: relative;
   bottom: -172px;
+}
+
+
+/*--------------------------------------------------------------
+# Parameters settings
+--------------------------------------------------------------*/
+.cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+}
+::selection{
+  color: #fff;
+  background: #17A2B8;
+}
+.wrapper{
+  width: 350px;
+  background: #012970;
+  border-radius: 10px;
+  padding: 20px 25px 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+header h2{
+  font-size: 24px;
+  font-weight: 600;
+}
+header p{
+  margin-top: 5px;
+  font-size: 16px;
+}
+.value-input{
+  width: 100%;
+  display: flex;
+  margin: 30px 0 35px;
+}
+.value-input .field{
+  display: flex;
+  width: 100%;
+  height: 45px;
+  align-items: center;
+}
+.field input{
+  width: 50%;
+  height: 70%;
+  outline: none;
+  font-size: 15px;
+  margin-left: 12px;
+  border-radius: 50px;
+  text-align: center;
+  border: 1px solid #999;
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.value-input .separator{
+  width: 130px;
+  display: flex;
+  font-size: 19px;
+  align-items: center;
+  justify-content: center;
+}
+.slider-SPO2{
+  height: 5px;
+  position: relative;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.slider-SPO2 .preprogress{
+  height: 100%;
+  left: 0%;
+  right: 16%;
+  position: absolute;
+  border-radius: 5px;
+  background: red;
+}
+
+.slider-SPO2 .progress{
+  height: 100%;
+  left: 84%;
+  right: 5%;
+  position: absolute;
+  border-radius: 5px;
+  background: yellow;
+}
+
+.slider-SPO2 .postprogress{
+  height: 100%;
+  left: 0%;
+  right: 0%;
+  position: absolute;
+  border-radius: 5px;
+  background: green;
+}
+
+.range-input{
+  position: relative;
+}
+.range-input input{
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  top: -5px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background: #17A2B8;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+input[type="range"]::-moz-range-thumb{
+  height: 17px;
+  width: 17px;
+  border: none;
+  border-radius: 50%;
+  background: black;
+  pointer-events: auto;
+  -moz-appearance: none;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.btn-holder{
+  position:relative;
+  top: 10px;
+  display: inline-block;
+}
+
+.btn-holder .btn{
+  float: left;
+
+}
+
+.btn-holder p{
+  color: #198754;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block; 
+  padding: 7px 7px 7px 7px;
+  margin: 0px;
+  opacity: 0;
+
 }
