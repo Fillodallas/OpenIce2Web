@@ -5,8 +5,8 @@ router.get('/', function(req, res) {
     res.render('index.html', {message: 'Render from router'});
 });
 
-router.get('/graphs', function(req, res) {
-    res.render('graphs.html', {message: 'Render from router'});
+router.get('/parameters', function(req, res) {
+    res.render('parameters.html', {message: 'Render from router'});
 });
 
 router.get('/monitor', function(req, res) {
