@@ -1622,33 +1622,34 @@ input:checked + .slider:before {
   color: #fff;
   background: #17A2B8;
 }
-.wrapper{
+.wrapper-SpO2{
   width: 350px;
   background: #012970;
   border-radius: 10px;
   padding: 20px 25px 20px;
   box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+  margin: 10px;
 }
-header h2{
+.wrapper-SpO2 header h2{
   font-size: 24px;
   font-weight: 600;
 }
-header p{
+.wrapper-SpO2 header p{
   margin-top: 5px;
   font-size: 16px;
 }
-.value-input{
+.wrapper-SpO2 .value-input{
   width: 100%;
   display: flex;
   margin: 30px 0 35px;
 }
-.value-input .field{
+.wrapper-SpO2 .value-input .field{
   display: flex;
   width: 100%;
   height: 45px;
   align-items: center;
 }
-.field input{
+.wrapper-SpO2 .field input{
   width: 50%;
   height: 70%;
   outline: none;
@@ -1659,25 +1660,25 @@ header p{
   border: 1px solid #999;
   -moz-appearance: textfield;
 }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+.wrapper-SpO2 input[type="number"]::-webkit-outer-spin-button,
+.wrapper-SpO2 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-.value-input .separator{
+.wrapper-SpO2 .value-input .separator{
   width: 130px;
   display: flex;
   font-size: 19px;
   align-items: center;
   justify-content: center;
 }
-.slider-SPO2{
+.wrapper-SpO2 .slider-SPO2{
   height: 5px;
   position: relative;
   background: #ddd;
   border-radius: 5px;
 }
 
-.slider-SPO2 .preprogress{
+.wrapper-SpO2 .slider-SPO2 .preprogress{
   height: 100%;
   left: 0%;
   right: 16%;
@@ -1686,7 +1687,7 @@ input[type="number"]::-webkit-inner-spin-button {
   background: red;
 }
 
-.slider-SPO2 .progress{
+.wrapper-SpO2 .slider-SPO2 .progress{
   height: 100%;
   left: 84%;
   right: 5%;
@@ -1695,7 +1696,7 @@ input[type="number"]::-webkit-inner-spin-button {
   background: yellow;
 }
 
-.slider-SPO2 .postprogress{
+.wrapper-SpO2 .slider-SPO2 .postprogress{
   height: 100%;
   left: 0%;
   right: 0%;
@@ -1704,10 +1705,10 @@ input[type="number"]::-webkit-inner-spin-button {
   background: green;
 }
 
-.range-input{
+.wrapper-SpO2 .range-input{
   position: relative;
 }
-.range-input input{
+.wrapper-SpO2 .range-input input{
   position: absolute;
   width: 100%;
   height: 5px;
@@ -1717,7 +1718,7 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-input[type="range"]::-webkit-slider-thumb{
+.wrapper-SpO2 input[type="range"]::-webkit-slider-thumb{
   height: 17px;
   width: 17px;
   border-radius: 50%;
@@ -1726,7 +1727,7 @@ input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance: none;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
-input[type="range"]::-moz-range-thumb{
+.wrapper-SpO2 input[type="range"]::-moz-range-thumb{
   height: 17px;
   width: 17px;
   border: none;
@@ -1737,18 +1738,18 @@ input[type="range"]::-moz-range-thumb{
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
 
-.btn-holder{
+.wrapper-SpO2 .btn-holder{
   position:relative;
   top: 10px;
   display: inline-block;
 }
 
-.btn-holder .btn{
+.wrapper-SpO2 .btn-holder .btn{
   float: left;
 
 }
 
-.btn-holder p{
+.wrapper-SpO2 .btn-holder p{
   color: #198754;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1761,3 +1762,170 @@ input[type="range"]::-moz-range-thumb{
 }
 
 
+.cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+}
+::selection{
+  color: #fff;
+  background: #17A2B8;
+}
+.wrapper-RR {
+  width: 500px;
+  background: #012970;
+  border-radius: 10px;
+  padding: 20px 25px 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+  margin: 10px;
+}
+.wrapper-RR header h2{
+  font-size: 24px;
+  font-weight: 600;
+}
+.wrapper-RR header p{
+  margin-top: 5px;
+  font-size: 16px;
+}
+.wrapper-RR .value-input{
+  width: 100%;
+  display: flex;
+  margin: 30px 0 35px;
+}
+.wrapper-RR .value-input .field{
+  display: flex;
+  width: 100%;
+  height: 45px;
+  align-items: center;
+}
+.wrapper-RR .field input{
+  width: 50%;
+  height: 70%;
+  outline: none;
+  font-size: 15px;
+  margin-left: 12px;
+  border-radius: 50px;
+  text-align: center;
+  border: 1px solid #999;
+  -moz-appearance: textfield;
+}
+.wrapper-RR input[type="number"]::-webkit-outer-spin-button,
+.wrapper-RR input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.wrapper-RR .value-input .separator{
+  width: 130px;
+  display: flex;
+  font-size: 19px;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper-RR .slider-RR{
+  height: 5px;
+  position: relative;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.wrapper-RR .slider-RR .redLow{
+  height: 100%;
+  left: 0%;
+  right: 87%;
+  position: absolute;
+  border-radius: 5px;
+  background: red;
+}
+
+.wrapper-RR .slider-RR .yelLow{
+  height: 100%;
+  left: 13%;
+  right: 75%;
+  position: absolute;
+  border-radius: 5px;
+  background: yellow;
+}
+
+.wrapper-RR .slider-RR .greenCenter{
+  height: 100%;
+  left: 25%;
+  right: 36%;
+  position: absolute;
+  border-radius: 5px;
+  background: green;
+}
+
+.wrapper-RR .slider-RR .yelHigh{
+  height: 100%;
+  left: 64%;
+  right: 10%;
+  position: absolute;
+  border-radius: 5px;
+  background: yellow;
+}
+
+.wrapper-RR .slider-RR .redHigh{
+  height: 100%;
+  left: 90%;
+  right: 0%;
+  position: absolute;
+  border-radius: 5px;
+  background: red;
+}
+
+.wrapper-RR .range-input{
+  position: relative;
+}
+.wrapper-RR .range-input input{
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  top: -5px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.wrapper-RR input[type="range"]::-webkit-slider-thumb{
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background: #17A2B8;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+.wrapper-RR input[type="range"]::-moz-range-thumb{
+  height: 17px;
+  width: 17px;
+  border: none;
+  border-radius: 50%;
+  background: black;
+  pointer-events: auto;
+  -moz-appearance: none;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.wrapper-RR .btn-holder{
+  position:relative;
+  top: 10px;
+  display: inline-block;
+}
+
+.wrapper-RR .btn-holder .btn{
+  float: left;
+
+}
+
+.wrapper-RR .btn-holder p{
+  color: #198754;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block; 
+  padding: 7px 7px 7px 7px;
+  margin: 0px;
+  opacity: 0;
+
+}

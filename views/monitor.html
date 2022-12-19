@@ -753,6 +753,7 @@
       });
       //#endregion Plethysomgraph
 
+
       //#endregion Live Wave Graphs
 
       //#endregion Graphs Initialization
@@ -826,7 +827,7 @@
           case "MDC_AWAY_CO2SIM":
             arr = maptoNum(arr[1]);
             Lab = Array.from(Array(arr.length).keys());
-            setInterval(reLoad(CapanomChart, arr, Lab, 500), 800);
+            (reLoad(CapanomChart, arr, Lab, 500), 800);
 
             break;
 
@@ -859,6 +860,7 @@
             break;
 
           case "MDC_PRESS_BLD_ART_ABPSIM":
+            
             arr = maptoNum(arr[1]);
             Lab = Array.from(Array(arr.length).keys());
             setInterval(reLoad(ABPChart, arr, Lab, 300), 800);

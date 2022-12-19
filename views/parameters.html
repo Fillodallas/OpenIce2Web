@@ -179,7 +179,8 @@
 
 
     <div class="cont">
-      <div class="wrapper">
+      <!--#region SpO2 Safety Limits-->
+      <div class="wrapper-SpO2">
         <header>
           <h2>SpO2 Limits</h2>
 
@@ -211,6 +212,57 @@
           <p id="updateSpO2" class="animate__animated animate__faster"><i class='bx bx-check'></i> Values updated</p>
         </div>
       </div>
+      <!--#endregion SpO2 Safety Limits-->
+
+      <!--#region RR Safety Limits-->
+      <div class="wrapper-RR">
+        <header>
+          <h2>RR Safety Limits</h2>
+
+        </header>
+        <div class="value-input">
+          <div class="field">
+            <span>Lowest</span>
+            <input type="number" class="input-lowest" value="4">
+          </div>
+          <div class="separator">-</div>
+          <div class="field">
+            <span>Lower</span>
+            <input type="number" class="input-lower" value="10">
+          </div>
+          <div class="separator">-</div>
+          <div class="field">
+            <span>Higer</span>
+            <input type="number" class="input-higher" value="25">
+          </div>
+          <div class="separator">-</div>
+          <div class="field">
+            <span>Highest</span>
+            <input type="number" class="input-highest" value="35">
+          </div>
+        </div>
+        <div class="slider-RR">
+
+          <div class="redLow"></div>
+          <div class="yelLow"></div>
+          <div class="greenCenter"></div>
+          <div class="yelHigh"></div>
+          <div class="redHigh"></div>
+        </div>
+        <div class="range-input">
+          <input type="range" class="range-lowest" min="0" max="40" value="4" step="2">
+          <input type="range" class="range-lower" min="0" max="40" value="10" step="2">
+          <input type="range" class="range-higher" min="0" max="40" value="25" step="2">
+          <input type="range" class="range-highest" min="0" max="40" value="35" step="2">
+        </div>
+
+        <div class="btn-holder">
+          <button type="button" class="btn btn-success" onclick="updateVal_RR();tempText('updateRR')">Save</button>
+          <p id="updateRR" class="animate__animated animate__faster"><i class='bx bx-check'></i> Values updated</p>
+        </div>
+      </div>
+
+      <!--#endregion RR Safety Limits-->
       <div>
 
   </main>
@@ -238,26 +290,27 @@
 
     //#region Function Section
 
-    const rangeInput = document.querySelectorAll(".range-input input"),
-      valueInput = document.querySelectorAll(".value-input input"),
-      rangedown = document.querySelector(".slider-SPO2 .preprogress"),
-      range = document.querySelector(".slider-SPO2 .progress"),
-      rangeup = document.querySelector(".slider-SPO2 .postprogress");
-    let valueGap = 2;
-
+    const rangeInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .range-input input"),
+      valueInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .value-input input"),
+      rangedown = document.querySelector(".wrapper-SpO2 .slider-SPO2 .preprogress"),
+      range = document.querySelector(".wrapper-SpO2 .slider-SPO2 .progress"),
+      rangeup = document.querySelector(".wrapper-SpO2 .slider-SPO2 .postprogress");
+    let valueGap_SpO2 = 2;
+    var SPo2_Max, SPo2_Min;
+    var RR_Lowest, RR_Lower, RR_Higer, RR_Highest;
     // Setto il range inizale prendendo i parametri dal file Json, dopo faccio che se non ho valori salvati nella memoria locale prendo questi!
     function setInitalCondition() {
 
       if ((localStorage.getItem("SPo2_Min") == null) || (localStorage.getItem("SPo2_Max") == null)) {
         // Se uno dei due valori non è salvato in memoria locale inizializzo l'input utilizzanod valori slavati in safetyParam (SpO2min, SpO2max)
-        rangeInput[0].value = SpO2min;
-        rangeInput[1].value = SpO2max;
+        rangeInput_SpO2[0].value = SpO2min;
+        rangeInput_SpO2[1].value = SpO2max;
 
       } else {
 
         // Se ci sono entrambi setto il valore che trovo nel local storage 
-        rangeInput[0].value = localStorage.getItem("SPo2_Min");
-        rangeInput[1].value = localStorage.getItem("SPo2_Max");
+        rangeInput_SpO2[0].value = localStorage.getItem("SPo2_Min");
+        rangeInput_SpO2[1].value = localStorage.getItem("SPo2_Max");
       }
 
       updateBarScroll();
@@ -266,9 +319,9 @@
 
     }
 
-    var SPo2_Max, SPo2_Min;
+    
 
-    valueInput.forEach(input => {
+    valueInput_SpO2.forEach(input => {
       input.addEventListener("input", e => {
 
         updateBarInput(e);
@@ -277,7 +330,7 @@
     });
 
     // For each input in the bar we run the funtion to update the bar style
-    rangeInput.forEach(input => {
+    rangeInput_SpO2.forEach(input => {
 
       input.addEventListener("input", e => {
         updateBarScroll(e);
@@ -290,6 +343,12 @@
     function updateVal_SpO2() {
       localStorage.setItem("SPo2_Max", SPo2_Max);
       localStorage.setItem("SPo2_Min", SPo2_Min);
+    }
+
+    
+    //Function for the button
+    function updateVal_RR() {
+      console.log(RR_Lowest, RR_Lower, RR_Higer, RR_Highest);
     }
 
 

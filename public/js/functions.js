@@ -130,45 +130,45 @@ function menuBtnChange() {
 //#region parameters.html functions
 // Function to update bar style when scrolling:
 function updateBarScroll(e) {
-  let minVal = parseInt(rangeInput[0].value),
-    maxVal = parseInt(rangeInput[1].value);
+  let minVal = parseInt(rangeInput_SpO2[0].value),
+    maxVal = parseInt(rangeInput_SpO2[1].value);
 
-  if (maxVal - minVal < valueGap) {
+  if (maxVal - minVal < valueGap_SpO2) {
     if (e.target.className === "range-min") {
-      rangeInput[0].value = maxVal - valueGap;
+      rangeInput_SpO2[0].value = maxVal - valueGap_SpO2;
     } else {
-      rangeInput[1].value = minVal + valueGap;
+      rangeInput_SpO2[1].value = minVal + valueGap_SpO2;
     }
   } else {
-    valueInput[0].value = minVal;
-    valueInput[1].value = maxVal;
+    valueInput_SpO2[0].value = minVal;
+    valueInput_SpO2[1].value = maxVal;
 
-    SPo2_Min = (minVal / rangeInput[0].max) * 100;
+    SPo2_Min = (minVal / rangeInput_SpO2[0].max) * 100;
 
-    SPo2_Max = (maxVal / rangeInput[1].max) * 100;
+    SPo2_Max = (maxVal / rangeInput_SpO2[1].max) * 100;
 
-    range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
-    rangedown.style.right = 100 - (minVal / rangeInput[0].max) * 100 + "%";
+    range.style.left = (minVal / rangeInput_SpO2[0].max) * 100 + "%";
+    rangedown.style.right = 100 - (minVal / rangeInput_SpO2[0].max) * 100 + "%";
 
-    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-    //rangeup.style.left =(maxVal / rangeInput[1].max) * 100 + "%";
+    range.style.right = 100 - (maxVal / rangeInput_SpO2[1].max) * 100 + "%";
+    //rangeup.style.left =(maxVal / rangeInput_SpO2[1].max) * 100 + "%";
   }
 }
 
 // Function to update bar style when input value in box:
 function updateBarInput(e) {
-  let minValue = parseInt(valueInput[0].value),
-    maxValue = parseInt(valueInput[1].value);
+  let minValue = parseInt(valueInput_SpO2[0].value),
+    maxValue = parseInt(valueInput_SpO2[1].value);
 
-  if (maxValue - minValue >= valueGap && maxValue <= rangeInput[1].max) {
+  if (maxValue - minValue >= valueGap_SpO2 && maxValue <= rangeInput_SpO2[1].max) {
     if (e.target.className === "input-min") {
-      rangeInput[0].value = minValue;
-      range.style.left = (minValue / rangeInput[0].max) * 100 + "%";
-      rangedown.style.right = 100 - (minValue / rangeInput[0].max) * 100 + "%";
-      range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
+      rangeInput_SpO2[0].value = minValue;
+      range.style.left = (minValue / rangeInput_SpO2[0].max) * 100 + "%";
+      rangedown.style.right = 100 - (minValue / rangeInput_SpO2[0].max) * 100 + "%";
+      range.style.right = 100 - (maxValue / rangeInput_SpO2[1].max) * 100 + "%";
     } else {
-      rangeInput[1].value = maxValue;
-      range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
+      rangeInput_SpO2[1].value = maxValue;
+      range.style.right = 100 - (maxValue / rangeInput_SpO2[1].max) * 100 + "%";
     }
   }
 }
@@ -252,3 +252,146 @@ function alarmOn() {
 
   }
 }
+
+
+const rangeInput_RR = document.querySelectorAll(".wrapper-RR .range-input input"),
+  valueInput_RR = document.querySelectorAll(".wrapper-RR .value-input input"),
+  redLow_RR = document.querySelector(".wrapper-RR .slider-RR .redLow"),
+  yelLow_RR = document.querySelector(".wrapper-RR .slider-RR .yelLow"),
+  greenCenter_RR = document.querySelector(".wrapper-RR .slider-RR .greenCenter"),
+  yelHigh_RR = document.querySelector(".wrapper-RR .slider-RR .yelHigh"),
+  redHigh_RR = document.querySelector(".wrapper-RR .slider-RR .redHigh");
+let valueGap_RR = 2;
+
+valueInput_RR.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    updateBarInput_RR(e);
+  });
+});
+
+// For each input in the bar we run the funtion to update the bar style
+rangeInput_RR.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    updateBarScroll_RR(e);
+  });
+});
+
+function updateBarScroll_RR(e) {
+  let lowestVal = parseInt(rangeInput_RR[0].value),
+    lowerVal = parseInt(rangeInput_RR[1].value),
+    higerVal = parseInt(rangeInput_RR[2].value),
+    highestVal = parseInt(rangeInput_RR[3].value);
+
+/*----------------------------
+# Higest/Higer interval
+----------------------------*/
+  if (highestVal - higerVal < valueGap_RR) {
+    if (e.target.className === "range-higher") {
+      rangeInput_RR[2].value = highestVal - valueGap_RR;
+
+      //valueInput_RR[2].value = highestVal - valueGap_RR;
+    } else {
+      rangeInput_RR[3].value = higerVal + valueGap_RR;
+    }
+  } else {
+    if (higerVal - lowerVal < valueGap_RR) {
+      rangeInput_RR[2].value = lowerVal + valueGap_RR;
+    } else {
+      valueInput_RR[2].value = higerVal;
+      yelHigh_RR.style.left = (higerVal / rangeInput_RR[2].max) * 100 + "%";
+    }
+
+    valueInput_RR[3].value = highestVal;
+
+    RR_Higer = rangeInput_RR[2].value;
+
+    RR_Highest = rangeInput_RR[3].value;
+
+    yelHigh_RR.style.right = 100 - (highestVal / rangeInput_RR[3].max) * 100 + "%";
+
+    redHigh_RR.style.left = (highestVal / rangeInput_RR[3].max) * 100 + "%";
+  }
+  //#region Higer/Lower interval interval
+  /*----------------------------
+# Higer/Lower interval
+----------------------------*/
+
+  if (higerVal - lowerVal < valueGap_RR) {
+    if (e.target.className === "range-lower") {
+      rangeInput_RR[1].value = higerVal - valueGap_RR;
+    } else {
+      rangeInput_RR[2].value = lowerVal + valueGap_RR;
+    }
+  } else {
+    if (lowerVal - lowestVal < valueGap_RR) {
+      rangeInput_RR[1].value = lowestVal + valueGap_RR;
+    } else {
+      valueInput_RR[1].value = lowerVal;
+    }
+
+    if (highestVal - higerVal < valueGap_RR) {
+      valueInput_RR[2].value = rangeInput_RR[3].value - 2;
+    }
+
+    RR_Lower = (lowerVal / rangeInput_RR[1].max) * 100;
+
+    RR_Higer = rangeInput_RR[2].value;
+
+    greenCenter_RR.style.right = 100 - (higerVal / rangeInput_RR[2].max) * 100 + "%";
+  }
+
+  //#endregion
+
+  //#region Lower/Lowest interval
+  /*----------------------------
+# Lower/Lowest interval
+----------------------------*/
+
+  if (lowerVal - lowestVal < valueGap_RR) {
+    if (e.target.className === "range-lowest") {
+      rangeInput_RR[0].value = lowerVal - valueGap_RR;
+    } else {
+      rangeInput_RR[1].value = lowestVal + valueGap_RR;
+    }
+  } else {
+    valueInput_RR[0].value = lowestVal;
+    valueInput_RR[1].value = lowerVal;
+
+    RR_Lowest = rangeInput_RR[0].value;
+
+    RR_Lower = rangeInput_RR[1].value;
+
+    redLow_RR.style.right = 100 - (lowestVal / rangeInput_RR[0].max) * 100 + "%";
+    greenCenter_RR.style.left = (lowerVal / rangeInput_RR[1].max) * 100 + "%";
+    yelLow_RR.style.right = 100 - (lowerVal / rangeInput_RR[1].max) * 100 + "%";
+
+    yelLow_RR.style.left = (lowestVal / rangeInput_RR[0].max) * 100 + "%";
+  }
+  //#endregion Lower/Lowest interval
+}
+
+/*
+// Function to update bar style when input value in box:
+function updateBarInput(e) {
+  let lowestValue = parseInt(valueInput_RR[0].value),
+    lowerValue = parseInt(valueInput_RR[1].value),
+    higerValue = parseInt(valueInput_RR[2].value),
+    highestValue = parseInt(valueInput_RR[3].value);
+
+  if (
+    highestValue - higerValue >= valueGap_RR &&
+    highestValue <= rangeInput[3].max
+  ) {
+    if (e.target.className === "input-higher") {
+      rangeInput[2].value = higerValue;
+      range.style.left = (higerValue / rangeInput[2].max) * 100 + "%";
+      rangedown.style.right =
+        100 - (higerValue / rangeInput[2].max) * 100 + "%";
+      range.style.right = 100 - (highestValue / rangeInput[3].max) * 100 + "%";
+    } else {
+      rangeInput[3].value = highestValue;
+      range.style.right = 100 - (highestValue / rangeInput[3].max) * 100 + "%";
+    }
+  }
+}
+*/
