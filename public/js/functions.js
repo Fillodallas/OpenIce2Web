@@ -77,9 +77,7 @@ function adddata(Chart, val1, label1, maxDSL, val2 = NaN, label2 = NaN) {
 /*
       myInterval = setInterval(sayHi, 500);
       */
-function sayHi() {
-  console.log("Hi");
-}
+
 
 function checkCollapse(collapsable, idDisplay, idKey) {
   var myCollapsible = document.getElementById(collapsable);
@@ -128,3 +126,129 @@ function menuBtnChange() {
   }
 }
 //#endregion Sidebar Controller
+
+//#region parameters.html functions
+// Function to update bar style when scrolling:
+function updateBarScroll(e) {
+  let minVal = parseInt(rangeInput[0].value),
+    maxVal = parseInt(rangeInput[1].value);
+
+  if (maxVal - minVal < valueGap) {
+    if (e.target.className === "range-min") {
+      rangeInput[0].value = maxVal - valueGap;
+    } else {
+      rangeInput[1].value = minVal + valueGap;
+    }
+  } else {
+    valueInput[0].value = minVal;
+    valueInput[1].value = maxVal;
+
+    SPo2_Min = (minVal / rangeInput[0].max) * 100;
+
+    SPo2_Max = (maxVal / rangeInput[1].max) * 100;
+
+    range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+    rangedown.style.right = 100 - (minVal / rangeInput[0].max) * 100 + "%";
+
+    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+    //rangeup.style.left =(maxVal / rangeInput[1].max) * 100 + "%";
+  }
+}
+
+// Function to update bar style when input value in box:
+function updateBarInput(e) {
+  let minValue = parseInt(valueInput[0].value),
+    maxValue = parseInt(valueInput[1].value);
+
+  if (maxValue - minValue >= valueGap && maxValue <= rangeInput[1].max) {
+    if (e.target.className === "input-min") {
+      rangeInput[0].value = minValue;
+      range.style.left = (minValue / rangeInput[0].max) * 100 + "%";
+      rangedown.style.right = 100 - (minValue / rangeInput[0].max) * 100 + "%";
+      range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
+    } else {
+      rangeInput[1].value = maxValue;
+      range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
+    }
+  }
+}
+
+//FadeIn and FadeOut text
+function tempText(idTxt) {
+  document.getElementById(idTxt).classList.add("animate__fadeIn");
+
+  setTimeout(function () {
+    document.getElementById(idTxt).classList.add("animate__fadeOut");
+    document.getElementById(idTxt).classList.remove("animate__fadeIn");
+  }, 700);
+  setTimeout(function () {
+    document.getElementById(idTxt).classList.remove("animate__fadeOut");
+  }, 1000);
+}
+
+function isChecked(idChecbox) {
+  if (document.getElementById(idChecbox).checked == true) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function update_Alarm(idChecbox) {
+  if (isChecked(idChecbox)){
+    console.log('Active');
+    localStorage.setItem("AlarmState", "active");
+  } else {
+    console.log('Not Active');
+    localStorage.setItem("AlarmState", "inactive");
+
+  }
+
+}
+
+//#endregion parameters.html functions
+
+
+
+//#region Loading settings
+function getAlarmState(){
+  if ((localStorage.getItem("AlarmState") == null)){
+    localStorage.setItem("AlarmState", AlarmState);
+  } else if ((localStorage.getItem("AlarmState") == "inactive")){
+    document.getElementById("alarmChecbox").checked = false;
+  } else {
+    document.getElementById("alarmChecbox").checked = true;
+  }
+
+
+
+  if(isChecked("alarmChecbox")){
+    console.log('Alarm active');
+    localStorage.setItem("AlarmState", "active");
+  } else {
+    localStorage.setItem("AlarmState", "inactive");
+    console.log('Alarm inactive');
+  }
+}
+
+//#endregion Loading settings
+
+function sayHi() {
+  console.log("Hi");
+}
+
+function alarmOn() {
+  if ((localStorage.getItem("AlarmState") == "active")){
+    // SpO2 parmaeters check:
+    if ((Po2_Perc >= localStorage.getItem("SPo2_Min")) && (Po2_Perc < localStorage.getItem("SPo2_Max"))){
+      document.getElementById("spo2Left").classList.add("dangerYell");
+    } else if ((Po2_Perc < localStorage.getItem("SPo2_Min"))){
+      document.getElementById("spo2Left").classList.add("dangerRed");
+      document.getElementById("spo2Left").classList.remove("dangerYell");
+    } else if ((Po2_Perc > localStorage.getItem("SPo2_Max"))) {
+      document.getElementById("spo2Left").classList.remove("dangerYell");
+      document.getElementById("spo2Left").classList.remove("dangerRed");
+    }
+
+  }
+}

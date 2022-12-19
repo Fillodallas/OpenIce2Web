@@ -1510,6 +1510,21 @@ input:checked + .slider:before {
   font-size: 60px;
 }
 
+
+.dangerYell{
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--bs-yellow);
+  border-radius: 0.6rem;
+}
+
+.dangerRed{
+  border-style: solid;
+  border-width: 3px;
+  border-color: red;
+  border-radius: 0.6rem;
+}
+
 /*-----------------ECG-------------------*/
 
 .ECG-colbody {
@@ -1744,3 +1759,5 @@ input[type="range"]::-moz-range-thumb{
   opacity: 0;
 
 }
+
+
