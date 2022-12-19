@@ -128,6 +128,31 @@ function menuBtnChange() {
 //#endregion Sidebar Controller
 
 //#region parameters.html functions
+const rangeInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .range-input input"),
+valueInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .value-input input"),
+rangedown = document.querySelector(".wrapper-SpO2 .slider-SPO2 .preprogress"),
+range = document.querySelector(".wrapper-SpO2 .slider-SPO2 .progress"),
+rangeup = document.querySelector(".wrapper-SpO2 .slider-SPO2 .postprogress");
+let valueGap_SpO2 = 2;
+
+valueInput_SpO2.forEach(input => {
+  input.addEventListener("input", e => {
+
+    updateBarInput(e);
+
+  });
+});
+
+// For each input in the bar we run the funtion to update the bar style
+rangeInput_SpO2.forEach(input => {
+
+  input.addEventListener("input", e => {
+    updateBarScroll(e);
+
+  });
+
+});
+
 // Function to update bar style when scrolling:
 function updateBarScroll(e) {
   let minVal = parseInt(rangeInput_SpO2[0].value),

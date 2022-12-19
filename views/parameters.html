@@ -62,7 +62,7 @@
             <div class="col">Alarm:</div>
             <div class="col">
               <label class="switch">
-                <input class="cb" type="checkbox" id="alarmChecbox" onclick="update_Alarm(this.id)"/>
+                <input class="cb" type="checkbox" id="alarmChecbox" onclick="update_Alarm(this.id)" />
                 <span class="slider round"></span>
               </label>
             </div>
@@ -290,17 +290,14 @@
 
     //#region Function Section
 
-    const rangeInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .range-input input"),
-      valueInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .value-input input"),
-      rangedown = document.querySelector(".wrapper-SpO2 .slider-SPO2 .preprogress"),
-      range = document.querySelector(".wrapper-SpO2 .slider-SPO2 .progress"),
-      rangeup = document.querySelector(".wrapper-SpO2 .slider-SPO2 .postprogress");
-    let valueGap_SpO2 = 2;
+
     var SPo2_Max, SPo2_Min;
     var RR_Lowest, RR_Lower, RR_Higer, RR_Highest;
+
     // Setto il range inizale prendendo i parametri dal file Json, dopo faccio che se non ho valori salvati nella memoria locale prendo questi!
     function setInitalCondition() {
 
+      //#region setInitalCondition SpO2
       if ((localStorage.getItem("SPo2_Min") == null) || (localStorage.getItem("SPo2_Max") == null)) {
         // Se uno dei due valori non è salvato in memoria locale inizializzo l'input utilizzanod valori slavati in safetyParam (SpO2min, SpO2max)
         rangeInput_SpO2[0].value = SpO2min;
@@ -312,32 +309,30 @@
         rangeInput_SpO2[0].value = localStorage.getItem("SPo2_Min");
         rangeInput_SpO2[1].value = localStorage.getItem("SPo2_Max");
       }
+      //#endregion setInitalCondition SpO2
 
+      //#region setInitalCondition RR
+      if ((localStorage.getItem("RR_Highest") == null) || (localStorage.getItem("RR_Higer") == null) || (localStorage.getItem("RR_Lower") == null) || (localStorage.getItem("RR_Lowest") == null)) {
+        // Se uno dei due valori non è salvato in memoria locale inizializzo l'input utilizzanod valori slavati in safetyParam (SpO2min, SpO2max)
+        rangeInput_RR[0].value = RR_Lowest;
+        rangeInput_RR[1].value = RR_Lower;
+        rangeInput_RR[2].value = RR_Higer;
+        rangeInput_RR[3].value = RR_Highest;
+
+      } else {
+
+        // Se ci sono entrambi setto il valore che trovo nel local storage 
+        rangeInput_RR[0].value = localStorage.getItem("RR_Lowest");
+        rangeInput_RR[1].value = localStorage.getItem("RR_Lower");
+        rangeInput_RR[2].value = localStorage.getItem("RR_Higer");
+        rangeInput_RR[3].value = localStorage.getItem("RR_Highest");
+      }
+      //#endregion setInitalCondition RR
       updateBarScroll();
-
-      
+      updateBarScroll_RR();
 
     }
 
-    
-
-    valueInput_SpO2.forEach(input => {
-      input.addEventListener("input", e => {
-
-        updateBarInput(e);
-
-      });
-    });
-
-    // For each input in the bar we run the funtion to update the bar style
-    rangeInput_SpO2.forEach(input => {
-
-      input.addEventListener("input", e => {
-        updateBarScroll(e);
-
-      });
-
-    });
 
     //Function for the button
     function updateVal_SpO2() {
@@ -345,14 +340,14 @@
       localStorage.setItem("SPo2_Min", SPo2_Min);
     }
 
-    
+
     //Function for the button
     function updateVal_RR() {
-      console.log(RR_Lowest, RR_Lower, RR_Higer, RR_Highest);
+      localStorage.setItem("RR_Lowest", rangeInput_RR[0].value);
+      localStorage.setItem("RR_Lower", rangeInput_RR[1].value);
+      localStorage.setItem("RR_Higer", rangeInput_RR[2].value);
+      localStorage.setItem("RR_Highest", rangeInput_RR[3].value);
     }
-
-
-
 
     //#endregion Function Section
 
