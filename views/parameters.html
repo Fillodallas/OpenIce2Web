@@ -24,7 +24,7 @@
   <!-- Bootsrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
   <!-- Animate CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <!--Adding jQuery -->
@@ -42,7 +42,8 @@
     ======================================================== -->
 </head>
 
-<body class="toggle-sidebar" onload="setInitalCondition()">
+<body class="toggle-sidebar" onload="setInitalCondition();getAlarmState()">
+
   <!--#region ======= Setting ======= -->
   <div class="popup">
     <div class="container h-100">
@@ -61,7 +62,7 @@
             <div class="col">Alarm:</div>
             <div class="col">
               <label class="switch">
-                <input class="cb" type="checkbox" id="alarmChecbox" />
+                <input class="cb" type="checkbox" id="alarmChecbox" onclick="update_Alarm(this.id)"/>
                 <span class="slider round"></span>
               </label>
             </div>
@@ -206,7 +207,7 @@
         </div>
 
         <div class="btn-holder">
-          <button type="button" class="btn btn-success" onclick="updateVal_SpO2();tempText('updateSpO2')" >Save</button>
+          <button type="button" class="btn btn-success" onclick="updateVal_SpO2();tempText('updateSpO2')">Save</button>
           <p id="updateSpO2" class="animate__animated animate__faster"><i class='bx bx-check'></i> Values updated</p>
         </div>
       </div>
@@ -232,125 +233,6 @@
 
     //#region Sezione ricezione e sroting dati
 
-    var vlHR;
-
-    socket.on("data", function (data) {
-      //listen for an event called data, when data event happens it runs this function
-
-      msg = data.toString();
-      var arr = msg.split(":");
-      var arrRR;
-      var timHR, timRR;
-
-      // arr[0] è il metricID
-      // arr[1] è il valore letto
-      // arr[2] è il tempo
-
-      //#region Data distribution
-      switch (arr[0]) {
-        //#region Single data sorting
-
-        case "MDC_CO2_RESP_RATE": // RR
-          document.getElementById("sampleCO2RR").innerHTML = arr[1];
-          document.getElementById("sideRR").innerHTML = arr[1];
-
-          // Obtain the Integer value and the time value to be graphed
-          vlRR = parseInt(arr[1]);
-          timRR = extracDate(arr[2]);
-          //(vlRR + " " + timRR)
-          //setInterval(reLoad(RRChart, vlPO2, timPO2, 15), 1000);
-
-          break;
-
-        case "MDC_AWAY_CO2_ET": //AWCO2
-          document.getElementById("sampleAWCO2").innerHTML = arr[1];
-
-          break;
-
-        case "MDC_PRESS_BLD_ART_ABP_SYS": // PSYS
-          document.getElementById("samplepPSYS").innerHTML = arr[1];
-
-          break;
-
-        case "MDC_PRESS_BLD_ART_ABP_DIA": // PDIA
-          document.getElementById("samplePDIA").innerHTML = arr[1];
-
-          break;
-
-        case "MDC_PULS_OXIM_SAT_O2": // PO2
-          document.getElementById("samplePO2").innerHTML = arr[1];
-          document.getElementById("sidePO2").innerHTML = arr[1];
-          var vlPO2 = parseFloat(arr[1]);
-          var timPO2 = extracDate(arr[2]);
-          setInterval(reLoad(PO2Chart, vlPO2, timPO2, 15), 1000);
-
-          break;
-
-        case "MDC_PULS_OXIM_PULS_RATE": //  POPR
-          document.getElementById("samplePOPR").innerHTML = arr[1];
-          break;
-
-        case "MDC_ECG_HEART_RATE": // HR
-          //Get the data from the array when recive HR sample
-          document.getElementById("sampleHR").innerHTML = arr[1];
-          document.getElementById("sideHR").innerHTML = arr[1];
-
-          // Obtain the Floating value and the time value to be graphed
-
-          vlHR = parseFloat(arr[1]);
-          timHR = extracDate(arr[2]);
-          setInterval(reLoad(HRChart, vlHR, timHR, 15), 1000);
-
-          break;
-
-        case "MDC_TTHOR_RESP_RATE": // TTRR
-          document.getElementById("sampleTTRR").innerHTML = arr[1];
-          break;
-
-        //#endregion Single data sorting
-
-        //#region Waveform data sorting
-
-        case "MDC_AWAY_CO2SIM":
-          arr = maptoNum(arr[1]);
-          Lab = Array.from(Array(arr.length).keys());
-
-          break;
-
-        case "MDC_ECG_LEAD_ISIM":
-          arr = maptoNum(arr[1]);
-          arr = arr.map(function (x) {
-            return x / 1;
-          });
-          Lab = Array.from(Array(arr.length).keys());
-          setInterval(reLoad(lIChart, arr, Lab, 200), 800);
-          break;
-
-        case "MDC_ECG_LEAD_IISIM":
-          break;
-
-        case "MDC_ECG_LEAD_IIISIM":
-          arr = maptoNum(arr[1]);
-          //console.log(arr);
-
-          break;
-
-        case "MDC_PRESS_BLD_ART_ABPSIM":
-          arr = maptoNum(arr[1]);
-          Lab = Array.from(Array(arr.length).keys());
-          setInterval(reLoad(ARTABPChart, arr, Lab, 800), 1000);
-          break;
-
-        case "MDC_PULS_OXIM_PLETHSIM":
-          arr = maptoNum(arr[1]);
-          Lab = Array.from(Array(arr.length).keys());
-
-          break;
-
-        //#endregion Waveform data sorting
-      }
-      //#endregion Data distribution
-    });
 
     //#endregion Sezione ricezione dati
 
@@ -366,7 +248,7 @@
     // Setto il range inizale prendendo i parametri dal file Json, dopo faccio che se non ho valori salvati nella memoria locale prendo questi!
     function setInitalCondition() {
 
-      if ((localStorage.getItem("SPo2_Min") == null) || (localStorage.getItem("SPo2_Max") == null)){
+      if ((localStorage.getItem("SPo2_Min") == null) || (localStorage.getItem("SPo2_Max") == null)) {
         // Se uno dei due valori non è salvato in memoria locale inizializzo l'input utilizzanod valori slavati in safetyParam (SpO2min, SpO2max)
         rangeInput[0].value = SpO2min;
         rangeInput[1].value = SpO2max;
@@ -380,6 +262,8 @@
 
       updateBarScroll();
 
+      
+
     }
 
     var SPo2_Max, SPo2_Min;
@@ -387,7 +271,7 @@
     valueInput.forEach(input => {
       input.addEventListener("input", e => {
 
-        updateBarInput();
+        updateBarInput(e);
 
       });
     });
@@ -396,7 +280,7 @@
     rangeInput.forEach(input => {
 
       input.addEventListener("input", e => {
-        updateBarScroll();
+        updateBarScroll(e);
 
       });
 
@@ -409,77 +293,10 @@
     }
 
 
-    // Function to update bar style when scrolling:
-    function updateBarScroll() {
-      let minVal = parseInt(rangeInput[0].value),
-        maxVal = parseInt(rangeInput[1].value);
-
-      if ((maxVal - minVal) < valueGap) {
-        if (e.target.className === "range-min") {
-          rangeInput[0].value = maxVal - valueGap
-
-        } else {
-          rangeInput[1].value = minVal + valueGap;
-        }
-      } else {
-        valueInput[0].value = minVal;
-        valueInput[1].value = maxVal;
 
 
-        SPo2_Min = (minVal / rangeInput[0].max) * 100;
+    //#endregion Function Section
 
-        SPo2_Max = (maxVal / rangeInput[1].max) * 100;
-
-
-        range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-        rangedown.style.right = (100 - (minVal / rangeInput[0].max) * 100) + "%";
-
-        range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-        //rangeup.style.left =(maxVal / rangeInput[1].max) * 100 + "%"; 
-
-      }
-    }
-
-
-    // Function to update bar style when input value in box:
-    function updateBarInput(){
-      let minValue = parseInt(valueInput[0].value),
-          maxValue = parseInt(valueInput[1].value);
-
-        if ((maxValue - minValue >= valueGap) && maxValue <= rangeInput[1].max) {
-          if (e.target.className === "input-min") {
-            rangeInput[0].value = minValue;
-            range.style.left = ((minValue / rangeInput[0].max) * 100) + "%";
-            rangedown.style.right = (100 - (minValue / rangeInput[0].max) * 100) + "%";
-            range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
-        
-
-          } else {
-            rangeInput[1].value = maxValue;
-            range.style.right = 100 - (maxValue / rangeInput[1].max) * 100 + "%";
-
-          }
-        }
-    }
-      //#endregion Function Section
-
-      function tempText(idTxt){
-
-             document.getElementById(idTxt).classList.add("animate__fadeIn");
-
-
-             setTimeout(function(){
-             document.getElementById(idTxt).classList.add("animate__fadeOut");
-             document.getElementById(idTxt).classList.remove("animate__fadeIn");
-             
-             },700);
-             setTimeout(function(){
-                document.getElementById(idTxt).classList.remove("animate__fadeOut");
-            },1000);
-
-
-
-      }
 
   </script>
 </body>

@@ -53,53 +53,49 @@
     ======================================================== -->
   </head>
 
-  <body class="toggle-sidebar">
+  <body class="toggle-sidebar" onload="getAlarmState()">
     <!--#region ======= Setting ======= -->
-    <div class="popup">
-      <div class="container h-100">
-        <i class="bi bi-x-circle option-close"></i>
-        <div class="h-100">
-          <!--=== Settings title ===-->
-          <div class="row h-10">
-            <h2>Setting</h2>
-          </div>
-          <!--=== Settings title ===-->
-
-          <!--=== Settings body ===-->
-          <div class="row h-90">
-            <!--=== Alarm Toggle ===-->
-            <div class="row h-10">
-              <div class="col">Alarm:</div>
-              <div class="col">
-                <label class="switch">
-                  <input class="cb" type="checkbox" id="alarmChecbox" />
-                  <span class="slider round"></span>
-                </label>
-              </div>
-            </div>
-            <!--=== Alarm Toggle ===-->
-
-            <!--=== GitHub Btn ===-->
-            <div class="row h-10 gitBtn-pos">
-              <div class="col w-10">
-                <a
-                  role="button"
-                  target="_blank"
-                  href="https://github.com/Fillodallas/OpenIce2Web"
-                  class="btn fs-mini settings-btn github-btn"
-                >
-                  <i class="bx bxl-github"></i>
-                  GitHub
-                </a>
-              </div>
-            </div>
-            <!--=== GitHub Btn ===-->
-          </div>
-          <!--=== Settings body ===-->
+  <div class="popup">
+    <div class="container h-100">
+      <i class="bi bi-x-circle option-close"></i>
+      <div class="h-100">
+        <!--=== Settings title ===-->
+        <div class="row h-10">
+          <h2>Setting</h2>
         </div>
+        <!--=== Settings title ===-->
+
+        <!--=== Settings body ===-->
+        <div class="row h-90">
+          <!--=== Alarm Toggle ===-->
+          <div class="row h-10">
+            <div class="col">Alarm:</div>
+            <div class="col">
+              <label class="switch">
+                <input class="cb" type="checkbox" id="alarmChecbox" onclick="update_Alarm(this.id)"/>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <!--=== Alarm Toggle ===-->
+
+          <!--=== GitHub Btn ===-->
+          <div class="row h-10 gitBtn-pos">
+            <div class="col w-10">
+              <a role="button" target="_blank" href="https://github.com/Fillodallas/OpenIce2Web"
+                class="btn fs-mini settings-btn github-btn">
+                <i class="bx bxl-github"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
+          <!--=== GitHub Btn ===-->
+        </div>
+        <!--=== Settings body ===-->
       </div>
     </div>
-    <!--#endregion ======= End Setting ====== -->
+  </div>
+  <!--#endregion ======= End Setting ====== -->
 
     <!--#region ======= Sidebar ======= -->
     <div class="sidebar">
