@@ -221,10 +221,8 @@ function isChecked(idChecbox) {
 
 function update_Alarm(idChecbox) {
   if (isChecked(idChecbox)){
-    console.log('Active');
     localStorage.setItem("AlarmState", "active");
   } else {
-    console.log('Not Active');
     localStorage.setItem("AlarmState", "inactive");
 
   }

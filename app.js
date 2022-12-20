@@ -4,8 +4,9 @@ console.log("=====================================================");
 
 //#region ////////////////// Initialize NodeJS-MDPnP server \\\\\\\\\\\\\\\\\\\\\\\\\
 
-var javaPort = 8080;
+
 var javaServer = require("net").createServer();
+const { javaHOST, javaPORT } = require("./public/config/default");
 var fileData;
 //#endregion
 
@@ -57,7 +58,7 @@ var firstDataListenner = function (data) {
 //#region ////////////////// NodeJS-MDPnP server Functions and Initialization\\\\\\\\\\\\\\\\\\\\\\\\\
 
 javaServer.on("listening", function () {
-  console.log("Server is listening on " + javaPort + " for OpenICE Data");
+  console.log("Server is listening on " + javaPORT + " for OpenICE Data");
 });
 
 javaServer.on("error", function (e) {
@@ -77,7 +78,7 @@ javaServer.on("connection", function (javaSocket) {
   javaSocket.on("data", firstDataListenner);
 });
 
-javaServer.listen(javaPort);
+javaServer.listen(javaPORT, javaHOST);
 
 //#endregion
 
