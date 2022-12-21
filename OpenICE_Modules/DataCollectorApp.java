@@ -33,8 +33,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static purejavacomm.Constants.HOST_add;
-import static purejavacomm.Constants.PORT_add;
+import org.mdpnp.rtiapi.data.WebAddress;
 
 ////////////////////////////////////////////////////
 
@@ -64,8 +63,8 @@ public class DataCollectorApp implements Initializable {
     protected ObservableList<Row> tblModel = FXCollections.observableArrayList();
 
 
-    static final Integer PORT = PORT_add;
-    static final String HOST = HOST_add;
+    static final Integer PORT = WebAddress.PORT_add;
+    static final String HOST = WebAddress.HOST_add;
 
 
     protected static class Row {

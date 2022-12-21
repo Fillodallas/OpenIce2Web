@@ -32,8 +32,7 @@ import com.rti.dds.subscription.Subscriber;
 
 import java.io.IOException;
 import java.net.Socket;
-import static purejavacomm.Constants.HOST_add;
-import static purejavacomm.Constants.PORT_add;
+import org.mdpnp.rtiapi.data.WebAddress;
 
 
 ////////////////////////////////////////////////////
@@ -54,8 +53,9 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
         s.getOutputStream().flush();
     }
 
-    static final Integer PORT = PORT_add;
-    static final String HOST = HOST_add;
+
+    static final Integer PORT = WebAddress.PORT_add;
+    static final String HOST = WebAddress.HOST_add;
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
