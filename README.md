@@ -15,24 +15,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 1. Replace OpenICE modules:
     - REPLACE **DataCollectorApp.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
     - REPLACE **SimMultiparameter.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-devices\src\main\java\org\mdpnp\devices\simulation\multi\SimMultiparameter.java
-    - ADD **Constants.java** in the installation folder: ~\mdpnp-master\mdpnp-masterV00.03\interop-lab\purejavacomm\src\main\java\purejavacomm\
-
-2. Modify dependencies: Open the mdpnp-master file with IntelliJ and modify the Project Structure.
-   - Open **Project Structure** (Ctrl + Alt + Maiusc+ S) or (File --> Project Structure..)
-   - In Modules section select the folder: demo-devices\main and add a Module Dependency
-      <details>
-         <summary>Show Image</summary>
-  
-         ![ProjecStructure_Upload](https://user-images.githubusercontent.com/92895058/208892538-fe7d0480-6844-44b2-b85f-28dc5d008a87.png)
- 
-      </details>
-   - Select **mdpnp-masterV00.03.interop-lab.demo-devices.main**. Apply and Save.
-      <details>
-         <summary>Show Image</summary>
-  
-         ![ProjecStructure2_main](https://user-images.githubusercontent.com/92895058/208892803-aaaa00b4-6dd4-4c9e-84d2-e324ddf95b57.png)
- 
-      </details>
+    - ADD **WebAddress.java** to the installation folder: ~\mdpnp-master\mdpnp-masterV00.03\data-types\x73-idl-rti-dds\src\main\java\org\mdpnp\rtiapi\data\
 
    
 ### NodeJS - Server setup
