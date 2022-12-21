@@ -5,7 +5,7 @@
 const webHOST = "localhost";
 const webPORT = 3030;
 
-const javaHOST = "localhost";
+const javaHOST = webHOST;
 const javaPORT = 8080;
 
 exports.webHOST = webHOST;
