@@ -1498,12 +1498,13 @@ input:checked + .slider:before {
 
 .bodyVal {
   position: relative;
-  padding: 18px 10px 18px 10px;
+  /*padding: 18px 10px 18px 10px;*/
   color: #ffff;
   text-align: center;
-  font-size: 70px;
-  font-weight: 600;
-  vertical-align: middle;
+  /*Center children div*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sml {
@@ -1592,6 +1593,10 @@ input:checked + .slider:before {
 
 .h-33 {
   height: 33% !important;
+}
+
+.h-80 {
+  height: 80% !important;
 }
 
 .h-90 {
@@ -1928,4 +1933,15 @@ input:checked + .slider:before {
   margin: 0px;
   opacity: 0;
 
+}
+.Graph {
+	position: relative;
+}
+
+.Graph > div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
