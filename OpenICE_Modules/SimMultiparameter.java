@@ -28,13 +28,16 @@ import org.slf4j.LoggerFactory;
 
 import com.rti.dds.publication.Publisher;
 import com.rti.dds.subscription.Subscriber;
-
 ////////////////////// import for server \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 import java.io.IOException;
 import java.net.Socket;
+import static purejavacomm.Constants.HOST_add;
+import static purejavacomm.Constants.PORT_add;
+
 
 ////////////////////////////////////////////////////
+
 
 
 /**
@@ -50,6 +53,9 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
         s.getOutputStream().write(message.getBytes("UTF-8"));
         s.getOutputStream().flush();
     }
+
+    static final Integer PORT = PORT_add;
+    static final String HOST = HOST_add;
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -215,8 +221,8 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
     private final SimulatedCapnometer capnometer;
     private final SimulatedInvasiveBloodPressure ibp;
 
-    static final Integer PORT = 8080;
-    static final String HOST = "localhost";
+
+
 
     @Override
     public boolean connect(String str) {
@@ -238,6 +244,9 @@ public class SimMultiparameter extends AbstractSimulatedConnectedDevice {
 
     public SimMultiparameter(final Subscriber subscriber, final Publisher publisher, EventLoop eventLoop) {
         super(subscriber, publisher, eventLoop);
+
+
+
 
         DeviceClock referenceClock = getClockProvider();
 

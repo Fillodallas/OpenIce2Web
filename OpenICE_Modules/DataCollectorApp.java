@@ -1,13 +1,7 @@
 package org.mdpnp.apps.testapp.export;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.*;
-
 import com.google.common.eventbus.Subscribe;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,17 +16,26 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-
-import org.mdpnp.apps.testapp.DialogUtils;
 import org.mdpnp.apps.testapp.Device;
 import org.mdpnp.apps.testapp.DeviceListModel;
+import org.mdpnp.apps.testapp.DialogUtils;
 import org.mdpnp.apps.testapp.export.DataCollectorAppFactory.PersisterUIController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ReflectionUtils;
 
-////////////////////// import for server \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.Socket;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import static purejavacomm.Constants.HOST_add;
+import static purejavacomm.Constants.PORT_add;
+
 ////////////////////////////////////////////////////
 
 public class DataCollectorApp implements Initializable {
@@ -61,8 +64,8 @@ public class DataCollectorApp implements Initializable {
     protected ObservableList<Row> tblModel = FXCollections.observableArrayList();
 
 
-    static final Integer PORT = 8080;
-    static final String HOST = "localhost";
+    static final Integer PORT = PORT_add;
+    static final String HOST = HOST_add;
 
 
     protected static class Row {
