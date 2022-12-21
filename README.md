@@ -15,7 +15,7 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 1. Replace OpenICE modules:
     - REPLACE **DataCollectorApp.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-apps\src\main\java\org\mdpnp\apps\testapp\export\DataCollectorApp.java
     - REPLACE **SimMultiparameter.java** in the installation folder: ~\mdpnp-master\interop-lab\demo-devices\src\main\java\org\mdpnp\devices\simulation\multi\SimMultiparameter.java
-    - ADD **WebAddress.java** to the installation folder: ~\mdpnp-master\mdpnp-masterV00.03\data-types\x73-idl-rti-dds\src\main\java\org\mdpnp\rtiapi\data\
+    - ADD **WebAddress.java** to the installation folder: ~\mdpnp-master\data-types\x73-idl-rti-dds\src\main\java\org\mdpnp\rtiapi\data\
 
    
 ### NodeJS - Server setup
