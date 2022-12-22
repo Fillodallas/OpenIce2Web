@@ -6,18 +6,20 @@ console.log("=====================================================");
 
 
 var javaServer = require("net").createServer();
-const { javaHOST, javaPORT } = require("./public/config/default");
+const { javaHOST, javaPORT } = require("./public/config/default.js");
 var fileData;
 //#endregion
 
 //#region ////////////////// Initialize NodeJS-WebPage server \\\\\\\\\\\\\\\\\\\\\\\\\
+const cors =require('cors');
 var expressHT = require("express"),
   appHT = expressHT(),
   httpHT = require("http"),
   socketIOHT = require("socket.io"),
   serverHT,
   ioHT;
-const { webHOST, webPORT } = require("./public/config/default");
+
+const { webHOST, webPORT } = require("./public/config/default.js");
 
 //#endregion
 
@@ -36,6 +38,9 @@ appHT.use("/", indexRouter);
 //#endregion
 
 //#region //////////////////// Static Files page \\\\\\\\\\\\\\\\\\\\\\\\\
+appHT.use(cors({
+  origin: "*",
+}));
 appHT.use(expressHT.static("public"));
 appHT.use("/css", expressHT.static(__dirname + "/public/css"));
 appHT.use("/js", expressHT.static(__dirname + "/public/js"));
