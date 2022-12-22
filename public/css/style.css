@@ -1767,6 +1767,7 @@ input:checked + .slider:before {
 }
 
 
+
 .cont{
   display: flex;
   align-items: center;
@@ -1934,6 +1935,11 @@ input:checked + .slider:before {
   opacity: 0;
 
 }
+
+
+
+
+
 .Graph {
 	position: relative;
 }

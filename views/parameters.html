@@ -178,7 +178,7 @@
 
 
 
-    <div class="cont">
+    <div class="row">
       <!--#region SpO2 Safety Limits-->
       <div class="wrapper-SpO2">
         <header>
@@ -187,12 +187,12 @@
         </header>
         <div class="value-input">
           <div class="field">
-            <span>Min</span>
+            <span class="labels">Min</span>
             <input type="number" class="input-min" value="84">
           </div>
           <div class="separator">-</div>
           <div class="field">
-            <span>Max</span>
+            <span class="labels">Max</span>
             <input type="number" class="input-max" value="95">
           </div>
         </div>
@@ -222,22 +222,22 @@
         </header>
         <div class="value-input">
           <div class="field">
-            <span>Lowest</span>
+            <span class="labels">Lowest</span>
             <input type="number" class="input-lowest" value="4">
           </div>
           <div class="separator">-</div>
           <div class="field">
-            <span>Lower</span>
+            <span class="labels">Lower</span>
             <input type="number" class="input-lower" value="10">
           </div>
           <div class="separator">-</div>
           <div class="field">
-            <span>Higer</span>
+            <span class="labels">Higer</span>
             <input type="number" class="input-higher" value="25">
           </div>
           <div class="separator">-</div>
           <div class="field">
-            <span>Highest</span>
+            <span class="labels">Highest</span>
             <input type="number" class="input-highest" value="35">
           </div>
         </div>
@@ -273,7 +273,6 @@
   </script>
   <script src="js/main.js"></script>
   <script src="js/functions.js"></script>
-  <script src="config/default.js"></script>
   <script src="config/safetyParam.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
@@ -281,7 +280,9 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <script type="text/javascript">
-    var socket = io(webHOST + ":" + webPORT);
+
+      var HOST = self.location.host;
+      var socket = io(HOST);
 
     //#region Sezione ricezione e sroting dati
 
@@ -348,6 +349,29 @@
       localStorage.setItem("RR_Higer", rangeInput_RR[2].value);
       localStorage.setItem("RR_Highest", rangeInput_RR[3].value);
     }
+
+
+    function checkContainerWidth() {
+        $(document).ready(function () {
+          var width = $("#main").outerWidth();
+
+          //console.log(width);
+          
+          if (width < 536) {
+            document.querySelectorAll('span').forEach(e => e.style.display = 'none');
+          } else {
+            document.querySelectorAll('span').forEach(e => e.style.display = 'block');
+          }
+          
+        });
+      }
+
+      window.addEventListener("resize", function () {
+        checkContainerWidth();
+      });
+
+      checkContainerWidth(); //first call
+
 
     //#endregion Function Section
 
