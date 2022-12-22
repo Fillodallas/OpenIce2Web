@@ -57,3 +57,17 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 
 
 https://user-images.githubusercontent.com/92895058/207165529-a35aec5d-c2c0-455c-bbcd-33a713c9f3f9.mp4
+
+
+## Create app.exe file [Optional]
+0. Downgrade to Python 3.10.8 or lower (This method does not work with Python 11).
+1. Install latest release of NASM (tried with V. 2.15.04) from: https://www.nasm.us/pub/nasm/releasebuilds/?C=M;O=D
+2. Open terminal and run the command:
+    ```
+    npm install -g nexe
+    ```
+3. Open **NodeJS terminal** move to the folder containing the app.js file ```cd ~/OpenIce2Web
+4. Still in **NodeJS terminal** run the following line:
+    ```
+    nexe app.js -r "public/config/*.js" -r "public/css/*.css" -r "public/img/*.png" -r "public/img/*.ico" -r "public/js/*.js" -r "routes/*.js" -r "views/*.html" --build
+    ```
