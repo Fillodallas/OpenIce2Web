@@ -66,7 +66,7 @@ https://user-images.githubusercontent.com/92895058/207165529-a35aec5d-c2c0-455c-
     ```
     npm install -g nexe
     ```
-3. Open **NodeJS terminal** move to the folder containing the app.js file ```cd ~/OpenIce2Web
+3. Open **NodeJS terminal** move to the folder containing app.js file 
 4. Still in **NodeJS terminal** run the following line:
     ```
     nexe app.js -r "public/config/*.js" -r "public/css/*.css" -r "public/img/*.png" -r "public/img/*.ico" -r "public/js/*.js" -r "routes/*.js" -r "views/*.html" --build
