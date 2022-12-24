@@ -78,7 +78,6 @@ function adddata(Chart, val1, label1, maxDSL, val2 = NaN, label2 = NaN) {
       myInterval = setInterval(sayHi, 500);
       */
 
-
 function checkCollapse(collapsable, idDisplay, idKey) {
   var myCollapsible = document.getElementById(collapsable);
   myCollapsible.addEventListener("hidden.bs.collapse", function () {
@@ -107,14 +106,18 @@ let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
 
 closeBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-  menuBtnChange(); //calling the function(optional)
+  if (window.innerWidth > 605) {
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  }
 });
 
 searchBtn.addEventListener("click", () => {
-  // Sidebar open when you click on the search iocn
-  sidebar.classList.toggle("open");
-  menuBtnChange(); //calling the function(optional)
+  if (window.innerWidth > 605) {
+    // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  }
 });
 
 // following are the code to change sidebar button(optional)
@@ -128,29 +131,28 @@ function menuBtnChange() {
 //#endregion Sidebar Controller
 
 //#region parameters.html functions
-const rangeInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .range-input input"),
-valueInput_SpO2 = document.querySelectorAll(".wrapper-SpO2 .value-input input"),
-rangedown = document.querySelector(".wrapper-SpO2 .slider-SPO2 .preprogress"),
-range = document.querySelector(".wrapper-SpO2 .slider-SPO2 .progress"),
-rangeup = document.querySelector(".wrapper-SpO2 .slider-SPO2 .postprogress");
+const rangeInput_SpO2 = document.querySelectorAll(
+    ".wrapper-SpO2 .range-input input"
+  ),
+  valueInput_SpO2 = document.querySelectorAll(
+    ".wrapper-SpO2 .value-input input"
+  ),
+  rangedown = document.querySelector(".wrapper-SpO2 .slider-SPO2 .preprogress"),
+  range = document.querySelector(".wrapper-SpO2 .slider-SPO2 .progress"),
+  rangeup = document.querySelector(".wrapper-SpO2 .slider-SPO2 .postprogress");
 let valueGap_SpO2 = 2;
 
-valueInput_SpO2.forEach(input => {
-  input.addEventListener("input", e => {
-
+valueInput_SpO2.forEach((input) => {
+  input.addEventListener("input", (e) => {
     updateBarInput(e);
-
   });
 });
 
 // For each input in the bar we run the funtion to update the bar style
-rangeInput_SpO2.forEach(input => {
-
-  input.addEventListener("input", e => {
+rangeInput_SpO2.forEach((input) => {
+  input.addEventListener("input", (e) => {
     updateBarScroll(e);
-
   });
-
 });
 
 // Function to update bar style when scrolling:
@@ -185,11 +187,15 @@ function updateBarInput(e) {
   let minValue = parseInt(valueInput_SpO2[0].value),
     maxValue = parseInt(valueInput_SpO2[1].value);
 
-  if (maxValue - minValue >= valueGap_SpO2 && maxValue <= rangeInput_SpO2[1].max) {
+  if (
+    maxValue - minValue >= valueGap_SpO2 &&
+    maxValue <= rangeInput_SpO2[1].max
+  ) {
     if (e.target.className === "input-min") {
       rangeInput_SpO2[0].value = minValue;
       range.style.left = (minValue / rangeInput_SpO2[0].max) * 100 + "%";
-      rangedown.style.right = 100 - (minValue / rangeInput_SpO2[0].max) * 100 + "%";
+      rangedown.style.right =
+        100 - (minValue / rangeInput_SpO2[0].max) * 100 + "%";
       range.style.right = 100 - (maxValue / rangeInput_SpO2[1].max) * 100 + "%";
     } else {
       rangeInput_SpO2[1].value = maxValue;
@@ -220,37 +226,31 @@ function isChecked(idChecbox) {
 }
 
 function update_Alarm(idChecbox) {
-  if (isChecked(idChecbox)){
+  if (isChecked(idChecbox)) {
     localStorage.setItem("AlarmState", "active");
   } else {
     localStorage.setItem("AlarmState", "inactive");
-
   }
-
 }
 
 //#endregion parameters.html functions
 
-
-
 //#region Loading settings
-function getAlarmState(){
-  if ((localStorage.getItem("AlarmState") == null)){
+function getAlarmState() {
+  if (localStorage.getItem("AlarmState") == null) {
     localStorage.setItem("AlarmState", AlarmState);
-  } else if ((localStorage.getItem("AlarmState") == "inactive")){
+  } else if (localStorage.getItem("AlarmState") == "inactive") {
     document.getElementById("alarmChecbox").checked = false;
   } else {
     document.getElementById("alarmChecbox").checked = true;
   }
 
-
-
-  if(isChecked("alarmChecbox")){
-    console.log('Alarm active');
+  if (isChecked("alarmChecbox")) {
+    console.log("Alarm active");
     localStorage.setItem("AlarmState", "active");
   } else {
     localStorage.setItem("AlarmState", "inactive");
-    console.log('Alarm inactive');
+    console.log("Alarm inactive");
   }
 }
 
@@ -261,27 +261,32 @@ function sayHi() {
 }
 
 function alarmOn() {
-  if ((localStorage.getItem("AlarmState") == "active")){
+  if (localStorage.getItem("AlarmState") == "active") {
     // SpO2 parmaeters check:
-    if ((Po2_Perc >= localStorage.getItem("SPo2_Min")) && (Po2_Perc < localStorage.getItem("SPo2_Max"))){
+    if (
+      Po2_Perc >= localStorage.getItem("SPo2_Min") &&
+      Po2_Perc < localStorage.getItem("SPo2_Max")
+    ) {
       document.getElementById("spo2Left").classList.add("dangerYell");
-    } else if ((Po2_Perc < localStorage.getItem("SPo2_Min"))){
+    } else if (Po2_Perc < localStorage.getItem("SPo2_Min")) {
       document.getElementById("spo2Left").classList.add("dangerRed");
       document.getElementById("spo2Left").classList.remove("dangerYell");
-    } else if ((Po2_Perc > localStorage.getItem("SPo2_Max"))) {
+    } else if (Po2_Perc > localStorage.getItem("SPo2_Max")) {
       document.getElementById("spo2Left").classList.remove("dangerYell");
       document.getElementById("spo2Left").classList.remove("dangerRed");
     }
-
   }
 }
 
-
-const rangeInput_RR = document.querySelectorAll(".wrapper-RR .range-input input"),
+const rangeInput_RR = document.querySelectorAll(
+    ".wrapper-RR .range-input input"
+  ),
   valueInput_RR = document.querySelectorAll(".wrapper-RR .value-input input"),
   redLow_RR = document.querySelector(".wrapper-RR .slider-RR .redLow"),
   yelLow_RR = document.querySelector(".wrapper-RR .slider-RR .yelLow"),
-  greenCenter_RR = document.querySelector(".wrapper-RR .slider-RR .greenCenter"),
+  greenCenter_RR = document.querySelector(
+    ".wrapper-RR .slider-RR .greenCenter"
+  ),
   yelHigh_RR = document.querySelector(".wrapper-RR .slider-RR .yelHigh"),
   redHigh_RR = document.querySelector(".wrapper-RR .slider-RR .redHigh");
 let valueGap_RR = 2;
@@ -305,9 +310,9 @@ function updateBarScroll_RR(e) {
     higerVal = parseInt(rangeInput_RR[2].value),
     highestVal = parseInt(rangeInput_RR[3].value);
 
-/*----------------------------
-# Higest/Higer interval
-----------------------------*/
+  /*----------------------------
+  # Higest/Higer interval
+  ----------------------------*/
   if (highestVal - higerVal < valueGap_RR) {
     if (e.target.className === "range-higher") {
       rangeInput_RR[2].value = highestVal - valueGap_RR;
@@ -330,12 +335,14 @@ function updateBarScroll_RR(e) {
 
     RR_Highest = rangeInput_RR[3].value;
 
-    yelHigh_RR.style.right = 100 - (highestVal / rangeInput_RR[3].max) * 100 + "%";
+    yelHigh_RR.style.right =
+      100 - (highestVal / rangeInput_RR[3].max) * 100 + "%";
 
     redHigh_RR.style.left = (highestVal / rangeInput_RR[3].max) * 100 + "%";
   }
   //#region Higer/Lower interval interval
-  /*----------------------------
+
+/*----------------------------
 # Higer/Lower interval
 ----------------------------*/
 
@@ -360,13 +367,15 @@ function updateBarScroll_RR(e) {
 
     RR_Higer = rangeInput_RR[2].value;
 
-    greenCenter_RR.style.right = 100 - (higerVal / rangeInput_RR[2].max) * 100 + "%";
+    greenCenter_RR.style.right =
+      100 - (higerVal / rangeInput_RR[2].max) * 100 + "%";
   }
 
   //#endregion
 
   //#region Lower/Lowest interval
-  /*----------------------------
+
+/*----------------------------
 # Lower/Lowest interval
 ----------------------------*/
 
@@ -384,7 +393,8 @@ function updateBarScroll_RR(e) {
 
     RR_Lower = rangeInput_RR[1].value;
 
-    redLow_RR.style.right = 100 - (lowestVal / rangeInput_RR[0].max) * 100 + "%";
+    redLow_RR.style.right =
+      100 - (lowestVal / rangeInput_RR[0].max) * 100 + "%";
     greenCenter_RR.style.left = (lowerVal / rangeInput_RR[1].max) * 100 + "%";
     yelLow_RR.style.right = 100 - (lowerVal / rangeInput_RR[1].max) * 100 + "%";
 

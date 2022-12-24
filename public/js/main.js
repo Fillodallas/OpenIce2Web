@@ -88,21 +88,7 @@
     onscroll(document, headerScrolled);
   }
 
-  /**
-   * Back to top button
-   */
-  let backtotop = select(".back-to-top");
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add("active");
-      } else {
-        backtotop.classList.remove("active");
-      }
-    };
-    window.addEventListener("load", toggleBacktotop);
-    onscroll(document, toggleBacktotop);
-  }
+
 
   /**
    * Initiate tooltips
@@ -213,20 +199,6 @@
   datatables.forEach((datatable) => {
     new simpleDatatables.DataTable(datatable);
   });
-
-  /**
-   * Autoresize echart charts
-   */
-  const mainContainer = select("#main");
-  if (mainContainer) {
-    setTimeout(() => {
-      new ResizeObserver(function () {
-        select(".echart", true).forEach((getEchart) => {
-          echarts.getInstanceByDom(getEchart).resize();
-        });
-      }).observe(mainContainer);
-    }, 200);
-  }
 
   /**
    * Open and Close Options
