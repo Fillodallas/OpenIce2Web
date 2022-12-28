@@ -49,8 +49,9 @@ The data transmitted by the OpenIce program is displayed by a Webpage served by 
 
 
 ## Demo:
-0. To enable client/server communication between two terminals, the following files must be modified:
-    - WebAddress.java (mdpnp-master\mdpnp-masterV00.03\data-types\x73-idl-rti-dds\src\main\java\org\mdpnp\rtiapi\data\WebAddress.java): modify **HOST_add** value with the host IPv4 used by the NodeJS HOST (MUST BE A STRING)
+0. To enable client/server communication between two terminals, the following files **must be modified**:
+    - **WebAddress.java** (~\mdpnp-master\data-types\x73-idl-rti-dds\src\main\java\org\mdpnp\rtiapi\data\WebAddress.java)
+    - Modify **HOST_add** value with the host IPv4 used by the NodeJS HOST (**MUST BE A STRING**)
 1. Open a terminal, navigate to the OpenICE folder, and run ‘.\gradlew run’. Gradle will download any other dependencies, build the application, and launch it.
 2. Connect your Medical Monitor or create a device adapter. Open the "Data Recorder" module and select the parameter you wish to transfer.
 
